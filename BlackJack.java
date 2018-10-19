@@ -4,34 +4,45 @@ import java.util.*;
 public class Blackjack {
 
   Deck d;
-  ArrayList<card> userHand;
-  ArrayList<card> compHand;
+  ArrayList<Card> userHand;//setting up a thing for the userHand
+  ArrayList<Card> compHand;//setting up a thing for the computer
 
   public Blackjack() {
-    d = new Deck();
-    userHand = new ArrayList<card>();
-    compHand = new ArrayList<card>();
-
+    d = new Deck(); //defines what the deck is and this is from the deck.java
+    userHand = new ArrayList<Card>();
+    compHand = new ArrayList<Card>();
   }
 
-  public Integer calculateHand(ArrayList<card> h) {
-
-    return null;
-
+  public Integer calculateHand(ArrayList<Card> h) {
+    int total = 0;
+    for(int i=0; i<h.size();i++) {
+      int g = h.get(i).getValue();
+      total = total + g;
+    }
+    System.out.println(total);
+    //taking in a parameter of an array list of card h
+    //get.value and add together
+//need to add like add things here
+    return total;
   }
 
   public static void main(String[] args) {
 
-    Blackjack b= new Blackjack();
+    Blackjack b = new Blackjack();
 
-    for (int i = 0; i < 10; i++) {
+    b.d.reset();
+    b.d.shuffle();
+    for (int i = 0; i < 4; i++) {
       Card c = b.d.drawCard();
-      userHand.add(c);
+      b.userHand.add(c);
+    }
+    b.calculateHand(b.userHand);
+    
+    for (int i = 0; i < b.userHand.size(); i++) {
+      System.out.println(b.userHand.get(i).getName());
     }
 
-    for (int i = 0; i < userHand.size(); i++) {
-      System.out.println(userHand.get(i).getName());
-    }
 
+//make sure to reset before shuffle deck
   }
 }
