@@ -19,7 +19,7 @@ public class Blackjack {
       int g = h.get(i).getValue();
       total = total + g;
     }
-    System.out.println(total);
+    System.out.println("Value is " + total);
     //taking in a parameter of an array list of card h
     //get.value and add together
 //need to add like add things here
@@ -29,20 +29,29 @@ public class Blackjack {
   public static void main(String[] args) {
 
     Blackjack b = new Blackjack();
-
+//userHand
     b.d.reset();
     b.d.shuffle();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
       Card c = b.d.drawCard();
       b.userHand.add(c);
     }
     b.calculateHand(b.userHand);
-    
+
     for (int i = 0; i < b.userHand.size(); i++) {
       System.out.println(b.userHand.get(i).getName());
     }
+//compHand
+    for (int i=0; i < 2; i++) {
+      Card q = b.d.drawCard();
+      b.compHand.add(q);
+    }
 
+    b.calculateHand(b.compHand);
 
+    for (int i = 0; i < b.compHand.size(); i++) {
+      System.out.println(b.compHand.get(i).getName());
+    }
 //make sure to reset before shuffle deck
   }
 }
