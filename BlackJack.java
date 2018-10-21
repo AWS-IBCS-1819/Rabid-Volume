@@ -43,6 +43,7 @@ public class Blackjack {
     //userHand
     b.d.reset();
     b.d.shuffle();
+    System.out.println("Here is your hand:");
     for (int i = 0; i < 2; i++) {
       Card c = b.d.drawCard();
       b.userHand.add(c);
@@ -51,6 +52,7 @@ public class Blackjack {
     for (int i = 0; i < b.userHand.size(); i++) {
       System.out.println(b.userHand.get(i).getName());
     }
+
       int user_hand_total = b.calculateHand(b.userHand);
       System.out.println("Value is " + user_hand_total);
 
@@ -61,25 +63,41 @@ public class Blackjack {
     }
 
     //for (int i = 0; i < b.compHand.size(); i++) {
-      System.out.println("Your opponent is showing a " + b.compHand.get(1).getName());
+      //b.compHand.get(i).getName();
+      //System.out.println("Your opponent is showing a " + b.compHand.get(1).getName());
     //}
+    System.out.println("Your opponent is showing a " + b.compHand.get(1).getName());
     //b.calculateHand(b.compHand);
     int comp_hand_total = b.calculateHand(b.compHand);
-    System.out.println("Value is " + comp_hand_total);
+    //System.out.println("Value is " + comp_hand_total);
 
     int n = b.responseChoice();
 
     if (n == 1) {
-      System.out.println("You hit 1");
+      b.userHand.add(b.d.drawCard());
+      //for (int i = 0; i < b.userHand.size(); i++) {
+        System.out.println("You drew a " + b.userHand.get(b.userHand.size()-1).getName());
+      //}
+      //int new_user_hand_total = b.calculateHand(b.userHand);
+      user_hand_total = b.calculateHand(b.userHand);
+      System.out.println("New value is " + user_hand_total);
+      //System.out.println("You hit 1"); //then go back to drawCard
     }
     else if (n == 2) {
-      System.out.println("You hit 2");
+      //continue or a do while loop
+      System.out.println("Your oppnent's hand is:\n");
+      for (int i = 0; i < b.compHand.size(); i++) {
+        System.out.println(b.compHand.get(i).getName());
+      }
+      System.out.println("Value is " + comp_hand_total);
+      //System.out.println("you hit 2"); //then game progresses
     }
     else if (n == 3) {
-      System.out.println("You hit 3");
+      System.out.println("You hit 3"); //program ends
+      System.exit(0);
     }
     else {
-      System.out.println("Do not recognize the number");
+      System.out.println("Do not recognize number \n please enter different number"); //enter new input
     }
 
 //make sure to reset before shuffle deck
