@@ -29,13 +29,13 @@ public class Blackjack {
     return total;
   }
 
-  public FIX THIS LATER cardName(ArrayList<Card> h){
-    String name;
-    for (int i = 0; i < h.size(); i++) {
-      name = h.get(i).getName();
-    }
-    return name;
-  }
+  //public FIX THIS LATER cardName(ArrayList<Card> h){
+  //  String name;
+  //  for (int i = 0; i < h.size(); i++) {
+  //    name = h.get(i).getName();
+  //  }
+//    return name;
+//  }
   //could make a method that print card names given a hand
 
   public static void main(String[] args) {
@@ -52,9 +52,9 @@ public class Blackjack {
     }
 
     for (int i = 0; i < b.userHand.size(); i++) {
-      System.out.println(b.cardName(userHand));
+      System.out.println(b.userHand.get(i).getName());
     }
-
+//b.cardName(userHand)
     int user_hand_total = b.calculateHand(b.userHand);
     System.out.println("Value is " + user_hand_total);
 
@@ -109,6 +109,10 @@ public class Blackjack {
   //while loop for what happens after (compHand)
   //dealer logic if <= 16 drawCard() else stay
   //dealer logic is another while loop if over 16 or value > 21 then break loop
+  boolean dealerProgram = true;
+
+  while (dealerProgram) {
+
   if (comp_hand_total <= 16) { //MAKE A METHOD FOR THIS BECAUSE IT IS DOES NOT GO FOR MY AESTHETIC
     b.compHand.add(b.d.drawCard());
     System.out.println("Dealer drew a " + b.compHand.get(b.userHand.size()-1).getName());
@@ -117,7 +121,9 @@ public class Blackjack {
   }
   else if (comp_hand_total > 17){
     System.out.println("Dealer stays");
+    break;
   }
+}
 
   }
 }
