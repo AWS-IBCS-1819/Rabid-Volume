@@ -54,7 +54,7 @@ public class Blackjack {
     for (int i = 0; i < b.userHand.size(); i++) {
       System.out.println(b.userHand.get(i).getName());
     }
-//b.cardName(userHand)
+
     int user_hand_total = b.calculateHand(b.userHand);
     System.out.println("Value is " + user_hand_total);
 
@@ -84,6 +84,14 @@ public class Blackjack {
       System.out.println("You drew a " + b.userHand.get(b.userHand.size()-1).getName());
       user_hand_total = b.calculateHand(b.userHand);
       System.out.println("New value is " + user_hand_total);
+        if (user_hand_total > 21){
+          System.out.println("You bust,sucker!");
+          break;
+        }
+        else if (user_hand_total == 21){
+          System.out.println("Congrats");
+          break;
+        }
       //System.out.println("You hit 1"); //then go back to drawCard
     }
     else if (n == 2) { //if we stay then dealer logic starts
@@ -94,6 +102,9 @@ public class Blackjack {
       System.out.println("Value is " + comp_hand_total);
       break;
       //System.out.println("you hit 2"); //then game progresses
+      }
+      else if (comp_hand_total > 17){
+        System.out.println("Dealer stays");
     }
     else if (n == 3) {
       System.out.println("Cheers :)"); //program ends completly
@@ -106,28 +117,43 @@ public class Blackjack {
   }
   reader.close();
 
-  //while loop for what happens after (compHand)
-  //dealer logic if <= 16 drawCard() else stay
-  //dealer logic is another while loop if over 16 or value > 21 then break loop
-  boolean dealerProgram = true;
+  if (comp_hand_total == 21) {
+    System.out.println("Dealer wins!");
+  }
 
-  while (dealerProgram) {
-
-  if (comp_hand_total <= 16) { //MAKE A METHOD FOR THIS BECAUSE IT IS DOES NOT GO FOR MY AESTHETIC
-    b.compHand.add(b.d.drawCard());
-    System.out.println("Dealer drew a " + b.compHand.get(b.userHand.size()-1).getName());
-    comp_hand_total = b.calculateHand(b.compHand);
-    System.out.println("New value is " + comp_hand_total);
+  if (comp_hand_total > 21) {
+    System.out.println("Dealer Busts\n You win!");
   }
   else if (comp_hand_total > 17){
-    System.out.println("Dealer stays");
-    break;
+    System.out.println("Dealer stays\n");
   }
+
+  while (comp_hand_total <= 16) { //MAKE A METHOD FOR THIS BECAUSE IT IS DOES NOT GO FOR MY AESTHETIC
+    if (user_hand_total > 21){
+      System.exit(0);
+    }
+    else {
+      b.compHand.add(b.d.drawCard());
+      System.out.println("Dealer drew a " + b.compHand.get(b.userHand.size()-1).getName());
+      comp_hand_total = b.calculateHand(b.compHand);
+      System.out.println("\nNew value is " + comp_hand_total);
+    }
+  }
+
+//resolving game
+  if (user_hand_total <= comp_hand_total) {
+    System.out.println("\nYou lose!");
+  }
+  else if (user_hand_total > comp_hand_total) {
+    System.out.println("\nYou win!");
+  }
+
 }
 
   }
-}
-//Need Scanner class for reader input (have done this)
+
+//while loop for what happens after (compHand)
+//dealer logic is another while loop if over 16 or value > 21 then break loop
 //if you choose option 1 then will need to loop again- Scanner will be inside of loop
 //indefinite loop- while loop until hit 2 or 3 or bust
 //if userHand busts then skip compHand
