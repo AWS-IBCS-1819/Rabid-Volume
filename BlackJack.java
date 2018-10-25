@@ -18,8 +18,11 @@ public class Blackjack {
     int total = 0;
     int g = 0;
     for (int i=0; i < h.size(); i++) {
-      if (h.get(i).getValue() > 10) { // if king/queen/jack set value to 10
+      if ((h.get(i).getValue() == 11) || (h.get(i).getValue() == 12) || (h.get(i).getValue() == 13)) { // if king/queen/jack set value to 10
         g = 10;
+      }
+      else if (h.get(i).getValue() == 1) {
+        g = 11;
       }
       else {
         g = h.get(i).getValue();
@@ -41,6 +44,8 @@ public class Blackjack {
   public static void main(String[] args) {
 
     Blackjack b = new Blackjack();
+    boolean runProgram = true;
+
     //intial card draw
     //userHand
     b.d.reset(); //make sure to reset before shuffle deck
@@ -58,6 +63,9 @@ public class Blackjack {
     int user_hand_total = b.calculateHand(b.userHand);
     System.out.println("Value is " + user_hand_total);
 
+    // add code if user_hand_total equals 21 here, user wins
+    if (user_hand_total == 21) {runProgram = false;}
+
       //compHand
     for (int i=0; i < 2; i++) {
       Card q = b.d.drawCard();
@@ -68,7 +76,6 @@ public class Blackjack {
     int comp_hand_total = b.calculateHand(b.compHand);
     //System.out.println("Value is " + comp_hand_total);
 
-    boolean runProgram = true;
     Scanner reader = new Scanner(System.in);  // Reading from System.in
 
     //while loop is for main 1.2.3
@@ -85,11 +92,11 @@ public class Blackjack {
       user_hand_total = b.calculateHand(b.userHand);
       System.out.println("New value is " + user_hand_total);
         if (user_hand_total > 21){
-          System.out.println("You bust,sucker!");
+          System.out.println("Oh no! You bust!\n");
           break;
         }
         else if (user_hand_total == 21){
-          System.out.println("Congrats");
+          System.out.println("Congrats\n You win");
           break;
         }
       //System.out.println("You hit 1"); //then go back to drawCard
@@ -117,29 +124,29 @@ public class Blackjack {
   }
   reader.close();
 
+  if (user_hand_total > 21){
+    System.exit(0);
+  }
+
+  while (comp_hand_total <= 16) { //need to be able to draw more than one hand
+    b.compHand.add(b.d.drawCard());
+    System.out.println("Dealer drew a " + b.compHand.get(b.compHand.size()-1).getName());
+    comp_hand_total = b.calculateHand(b.compHand);
+    System.out.println("\nNew value is " + comp_hand_total);
+
   if (comp_hand_total == 21) {
     System.out.println("Dealer wins!");
+    System.exit(0);
   }
 
   if (comp_hand_total > 21) {
     System.out.println("Dealer Busts\n You win!");
+    System.exit(0);
   }
   else if (comp_hand_total > 17){
     System.out.println("Dealer stays\n");
   }
-
-  while (comp_hand_total <= 16) { //MAKE A METHOD FOR THIS BECAUSE IT IS DOES NOT GO FOR MY AESTHETIC
-    if (user_hand_total > 21){
-      System.exit(0);
-    }
-    else {
-      b.compHand.add(b.d.drawCard());
-      System.out.println("Dealer drew a " + b.compHand.get(b.userHand.size()-1).getName());
-      comp_hand_total = b.calculateHand(b.compHand);
-      System.out.println("\nNew value is " + comp_hand_total);
-    }
-  }
-
+}
 //resolving game
   if (user_hand_total <= comp_hand_total) {
     System.out.println("\nYou lose!");
