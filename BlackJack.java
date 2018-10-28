@@ -83,10 +83,26 @@ public class Blackjack {
     while (runProgram) {
 
     System.out.println("\nWhat would you like to do?\n 1. Hit (Draw Card)\n 2. Stay\n 3. Quit\n");
-    //make sure this is an int
-    int n = reader.nextInt();
-    //Integer.valueOf(reader.nextLine());
-    // add java.lang.NumberFormatException handling using try catch
+
+    int n = 0;
+
+    try {
+      n = reader.nextInt(); //make sure this is an int
+    }
+    catch (InputMismatchException ime){
+      boolean bError = true;
+      while (bError) {
+        if (reader.hasNextInt()) {
+          n = reader.nextInt();
+        }
+        else {
+          System.out.println("Please enter \n 1. Hit (Draw Card)\n 2. Stay\n 3. Quit\n");
+          reader.next();
+          continue;
+        }
+        bError = false;
+      }
+    }
 
     if (n == 1) {
       b.userHand.add(b.d.drawCard());
@@ -111,24 +127,36 @@ public class Blackjack {
         System.out.println(b.compHand.get(i).getName());
       }
       System.out.println("\nValue is " + comp_hand_total);
-      break;
+      if (comp_hand_total == 21) {
+        System.out.println("\nDealer wins!");
+        bust = true;
+        break;
+      }
+      if (comp_hand_total > 21) {
+        System.out.println("\nDealer Busts\nYou win!");
+        bust = true;
+        break;
+      }
+      else if ((comp_hand_total >= 17) && (comp_hand_total < 21)){
+        System.out.println("\nDealer stays\n");
+        break;
+      }
+      else {
+        break;
+      }
       //then game progresses
       }
-      else if (comp_hand_total > 17){
-        System.out.println("Dealer stays");
-    }
+
     else if (n == 3) {
       System.out.println("Cheers :)"); //program ends completly
-      bust = true; //create booleans
-      System.exit(0); //system.ext() not working
+      bust = true;
+      System.exit(0);
     }
     else {
-      System.out.println("Please enter a valid option:\n"); //enter new input
+      System.out.println("Please enter a valid option:"); //enter new input
     }
 
   } // end of asking user while loop
-
-  //ADD SOME BOOLEANS TO DEAL WITH THIS ISH
 
 if (bust == false) {
   while (comp_hand_total <= 16) { //need to be able to draw more than one hand
@@ -140,21 +168,20 @@ if (bust == false) {
   if (comp_hand_total == 21) {
     System.out.println("\nDealer wins!");
     bust = true;
-    break;
+  //  break;
   }
-
   if (comp_hand_total > 21) {
     System.out.println("\nDealer Busts\nYou win!");
     bust = true;
-    break;
+  //  break;
   }
-  else if (comp_hand_total > 17){
+  else if ((comp_hand_total >= 17) && (comp_hand_total < 21)){
     System.out.println("\nDealer stays\n");
-    break;
+//    break;
   }
 }
     //resolving game
-  if (user_hand_total <= comp_hand_total) {
+  if ((user_hand_total <= comp_hand_total) && (comp_hand_total <= 21)) {
     System.out.println("You lose!");
   }
   else if (user_hand_total > comp_hand_total) {
@@ -168,11 +195,7 @@ b.compHand.clear();
 
 System.out.println("\nDo you want to play again?\nY/N");
   String george = reader.next();
-
-    if (george.equals("y")) {
-      System.out.println("Yeet");
-    }
-    else if (george.equals("n")) {
+    if (george.equalsIgnoreCase("n")) {
       System.out.println("Cheers!");
       break;
     }
@@ -180,11 +203,3 @@ System.out.println("\nDo you want to play again?\nY/N");
 
   }
 } //end bracket of entire thing
-
-//while loop for what happens after (compHand)
-//dealer logic is another while loop if over 16 or value > 21 then break loop
-//if you choose option 1 then will need to loop again- Scanner will be inside of loop
-//indefinite loop- while loop until hit 2 or 3 or bust
-//if userHand busts then skip compHand
-//two while loops for userHand and compHand- compHand is outside of userHand loop
-//then resolve game
