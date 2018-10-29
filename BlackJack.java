@@ -13,11 +13,11 @@ public class Blackjack {
     compHand = new ArrayList<Card>();
   }
 
-  public Integer calculateHand(ArrayList<Card> h) {
+  public Integer calculateHand(ArrayList<Card> h) { //method for getting card total
     int total = 0;
     int g = 0;
     for (int i=0; i < h.size(); i++) {
-      if ((h.get(i).getValue() == 11) || (h.get(i).getValue() == 12) || (h.get(i).getValue() == 13)) { // if king/queen/jack set value to 10
+      if ((h.get(i).getValue() == 11) || (h.get(i).getValue() == 12) || (h.get(i).getValue() == 13)) { // complying with Blackjack rules
         g = 10;
       }
       else if (h.get(i).getValue() == 1) {
@@ -46,7 +46,9 @@ public class Blackjack {
     b.d.shuffle();
 
     System.out.println("\nWelcome to Blackjack!\n");
-    System.out.println("Here is your hand:");
+    System.out.println("Here is your hand:\n");
+
+    //drawCard function for userHand
     for (int i = 0; i < 2; i++) {
       Card c = b.d.drawCard();
       b.userHand.add(c);
@@ -59,14 +61,14 @@ public class Blackjack {
     int user_hand_total = b.calculateHand(b.userHand);
     System.out.println("\nValue is " + user_hand_total);
 
-    // add code if user_hand_total equals 21 here, user wins
+    // if user_hand_total equals 21 here, user wins right away
     if (user_hand_total == 21) {
       runProgram = false;
       bust = true;
       System.out.println("Congrats");
     }
 
-      //compHand
+      // drawCard functionality of compHand
     for (int i=0; i < 2; i++) {
       Card q = b.d.drawCard();
       b.compHand.add(q);
@@ -76,9 +78,9 @@ public class Blackjack {
     int comp_hand_total = b.calculateHand(b.compHand);
 
 
-    Scanner reader = new Scanner(System.in);  // Reading from System.in
+    Scanner reader = new Scanner(System.in);  // Reading from System.in and get User input
 
-    //while loop is for main 1.2.3
+    //while loop is for main 1/2/3
 
     while (runProgram) {
 
@@ -87,7 +89,7 @@ public class Blackjack {
     int n = 0;
 
     try {
-      n = reader.nextInt(); //make sure this is an int
+      n = reader.nextInt(); //added a try-catch loop to catch human errors
     }
     catch (InputMismatchException ime){
       boolean bError = true;
@@ -119,15 +121,15 @@ public class Blackjack {
           bust = true;
           break;
         }
-      // if hit 1 then go back to drawCard
+      // the only way to exist 1/2/3 loop is to overdraw or hit 2
     }
-    else if (n == 2) { //if we stay then dealer logic starts
+    else if (n == 2) { //if we stay (hit 2) then dealer logic starts
       System.out.println("Your oppnent's hand is:\n");
       for (int i = 0; i < b.compHand.size(); i++) {
         System.out.println(b.compHand.get(i).getName());
       }
-      System.out.println("\nValue is " + comp_hand_total);
-      if (comp_hand_total == 21) {
+      System.out.println("\nValue is " + comp_hand_total); //the start of dealer logic
+      if (comp_hand_total == 21) { //need to have this twice because the first time is within brackets
         System.out.println("\nDealer wins!");
         bust = true;
         break;
@@ -144,7 +146,7 @@ public class Blackjack {
       else {
         break;
       }
-      //then game progresses
+      //then game progresses- go to dealerlogic
       }
 
     else if (n == 3) {
@@ -158,29 +160,26 @@ public class Blackjack {
 
   } // end of asking user while loop
 
-if (bust == false) {
+if (bust == false) { //have this if statement here so that the dealer logic will only happen when userHand does not bust
   while (comp_hand_total <= 16) { //need to be able to draw more than one hand
   b.compHand.add(b.d.drawCard());
   System.out.println("\nDealer drew a " + b.compHand.get(b.compHand.size()-1).getName());
   comp_hand_total = b.calculateHand(b.compHand);
   System.out.println("\nNew value is " + comp_hand_total);
 
-  if (comp_hand_total == 21) {
+  if (comp_hand_total == 21) { //what to do in the special cases
     System.out.println("\nDealer wins!");
     bust = true;
-  //  break;
   }
   if (comp_hand_total > 21) {
     System.out.println("\nDealer Busts\nYou win!");
     bust = true;
-  //  break;
   }
   else if ((comp_hand_total >= 17) && (comp_hand_total < 21)){
     System.out.println("\nDealer stays\n");
-//    break;
   }
 }
-    //resolving game
+    //resolving the game
   if ((user_hand_total <= comp_hand_total) && (comp_hand_total <= 21)) {
     System.out.println("You lose!");
   }
@@ -189,8 +188,8 @@ if (bust == false) {
     }
 
 }
-//need to clear userHand and compHand
-b.userHand.clear();
+//play again function
+b.userHand.clear(); //clear both hands to assure no carry over from last game
 b.compHand.clear();
 
 System.out.println("\nDo you want to play again?\nY/N");
@@ -199,7 +198,7 @@ System.out.println("\nDo you want to play again?\nY/N");
       System.out.println("Cheers!");
       break;
     }
-  }
+  } //end of big while loop
 
-  }
+  } //end of main argument
 } //end bracket of entire thing
