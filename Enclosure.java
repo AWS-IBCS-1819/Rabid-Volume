@@ -19,9 +19,9 @@ public class Enclosure {
     return size;
   }
 
-  public Enclosure() {
-    habitat = "";
-    size = 0;
+  public Enclosure(String habitat, int size) {
+    this.habitat = habitat;
+    this.size = size;
   }
 
 }

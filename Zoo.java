@@ -21,6 +21,16 @@ public class Zoo{
           return animals;
 }
 
+private static Enclosure[] getEnclosure(){
+        Enclosure[] enclosures = new Enclosure[3];
+
+        enclosures[0] = new Enclosure("Shell", 1);
+        enclosures[1] = new Enclosure("Banana peel", 10);
+        enclosures[2] = new Enclosure("Aquarium", 50);
+
+        return enclosures;
+}
+
   public static void main(String[] args) {
     Zoo z = new Zoo();
 //need scanner for user input
@@ -37,15 +47,12 @@ public class Zoo{
 //a.setMammal(false);
 //System.out.println(z.getAnimals());
 
-for(Animal ani:getAnimals()){
-  System.out.println(ani.getName());
+for(Animal ani:getAnimals()){ //this is similar to the size function but for an Array
+  System.out.println(ani.getName() + ": has " + ani.getLegs() + " legs, mammal? " + ani.getMammal());
         }
-//aninfo.add(a);
-//aninfo.add(new Animal("Banana Slug", 0, false));
-//aninfo.add(new Animal("Octopus", 8, false));
-//System.out.println(aninfo(0));
-//System.out.println(aninfo(1));
-//System.out.println(aninfo(2));
+for(Enclosure enclo:getEnclosure()){
+  System.out.println(enclo.getHabitat() + ": is " + enclo.getSize() + " inches");
+        }
 
 }
 }
