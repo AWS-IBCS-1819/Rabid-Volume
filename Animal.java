@@ -1,7 +1,7 @@
 public class Animal {
 
-  int legs;
   String name;
+  int legs;
   Boolean mammal;
 
   public void setName(String n) {
@@ -28,10 +28,16 @@ public class Animal {
     return mammal;
   }
 
-  public Animal() {
-    name = "";
-    legs = 0;
-    mammal = true;
+  //public Animal() {
+  //  name = "";
+  //  legs = 0;
+  //  mammal = true;
+  //}
+
+  public Animal(String name, int legs, Boolean mammal) {
+    this.name = name;
+    this.legs = legs;
+    this.mammal = mammal;
   }
 
 }
