@@ -11,27 +11,6 @@ public class Zoo{
     encloinfo = new ArrayList<Enclosure>();
   }
 
-/*  private static Animal[] getAnimals(){
-          Animal[] animals = new Animal[3];
-
-          animals[0] = new Animal("Snail", 0, false);
-          animals[1] = new Animal("Banana Slug", 0, false);
-          animals[2] = new Animal("Octopus", 8, false);
-
-          aninfo = Animal[];
-          return aninfo;
-}
-
-private static Enclosure[] getEnclosure(){
-        Enclosure[] enclosures = new Enclosure[3];
-
-        enclosures[0] = new Enclosure("Shell", 1);
-        enclosures[1] = new Enclosure("Banana peel", 10);
-        enclosures[2] = new Enclosure("Aquarium", 50);
-
-        return enclosures;
-} */
-
   public static void main(String[] args) {
     Zoo z = new Zoo();
 
@@ -56,7 +35,7 @@ choices.put(2, Peel.getHabitat());
 choices.put(3, Aqua.getHabitat());
 choices.put(4, Dunder.getHabitat());
 choices.put(5, "quit");
-//choices.put("blah", z.aninfo);
+
 while (true){
 System.out.println(choices);//CHANGE THIS to only output the key and make it a number
 System.out.println("Pick a habitat: ");
