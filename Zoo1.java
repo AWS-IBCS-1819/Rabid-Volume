@@ -17,12 +17,20 @@ public class Zoo1{
   public static void main(String[] args) {
     Zoo1 z = new Zoo1();
 
-    Enclosure e1= new Enclosure("Aquarium", 100);
+    Enclosure e1= new Enclosure("Aquarium", 100); //creates the enclosure options
     Enclosure e2 = new Enclosure("Forest",300);
     Enclosure e3 = new Enclosure("Plains", 120);
     Enclosure e4 = new Enclosure("Jungle", 200);
 
-    Animal Snail = new Animal("Snail", 0, false, "cucumbers");
+    ArrayList<String> elist = new ArrayList<String>(); //create an arraylist to include all enclosure choices
+    elist.add(e1.getHabitat());
+    elist.add(e2.getHabitat());
+    elist.add(e3.getHabitat());
+    elist.add(e4.getHabitat());
+    elist.add("Quit");
+
+
+    Animal Snail = new Animal("Snail", 0, false, "cucumbers"); //made Animal objects for each animal
     Animal Slug = new Animal("Banana Slug", 0, false, "mushrooms");
     Animal Octopus = new Animal("Octopus", 8, false, "fish");
 
@@ -36,21 +44,26 @@ public class Zoo1{
     Animal Chimp = new Animal("Chimpanzee", 4, true, "fruit and your face");
     Animal Leopard = new Animal("Leopards", 4, true, "Gazelle");
 
-    Animal[] invertebrae = {Snail, Slug, Octopus};
+    Animal[] invertebrae = {Snail, Slug, Octopus}; //put each animal object into an array
     Animal[] vertebrae = {BlackBear, Grizzly};
     Animal[] shmer = {Badger, Coyote, Rabbit};
     Animal[] variable = {Chimp, Leopard};
 
 HashMap<String, Animal[]> choices = new HashMap<String, Animal[]>();
 
-choices.put(e1.getHabitat(), invertebrae);
+choices.put(e1.getHabitat(), invertebrae); //make a key and value between the animal array and the enclosure
 choices.put(e2.getHabitat(), vertebrae);
 choices.put(e3.getHabitat(), shmer);
 choices.put(e4.getHabitat(), variable);
 
 while (true){
 
-System.out.println("Pick a habitat:\n1.Aquarium\n2.Forest\n3.Plains\n4.Jungle\n5.Quit");
+System.out.println("Pick a habitat:");
+int g = 0;
+for(int i = 0; i < elist.size(); i++){ //loops through an arraylist to print each enclosure
+  g = i+1;
+  System.out.println(g + elist.get(i));
+}
 
 Scanner bleh = new Scanner(System.in);
 
@@ -58,10 +71,16 @@ int n = 0;
 
 n = bleh.nextInt();
 
-if (n == 1) {
+if (n == 1) { //if statements for each choice and the choice is dealing with the habitats
   System.out.println("The enclosure is: " + e1.getSize() + " square feet");
   System.out.println("Animals in this enclosure:");
   z.printAnimals(choices.get("Aquarium"));
+
+
+/*  for(int i=0; i < S.size(); i++) {
+    System.out.println(S.get(i));
+  }
+*/
 
   System.out.println("\nSome info about them:\n" + Snail.getName() + " has " + Snail.getLegs() + " legs");
   System.out.println(Slug.getName() + " has " + Slug.getLegs() + " legs");
@@ -130,6 +149,10 @@ if (n == 4) {
 
 if(n==5) {
   break;
+}
+
+else {
+  System.out.println("Sorry we didn't understand that.");
 }
 
 }
