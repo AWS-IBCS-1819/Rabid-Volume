@@ -3,6 +3,7 @@ public class Animal {
   String name;
   int legs;
   Boolean mammal;
+  String diet;
 
   public void setName(String n) {
     name = n;
@@ -14,6 +15,10 @@ public class Animal {
 
   public void setMammal(Boolean m) {
     mammal = m;
+  }
+
+  public void setDiet(String s) {
+    diet = s;
   }
 
   public String getName() {
@@ -28,10 +33,15 @@ public class Animal {
     return mammal;
   }
 
-  public Animal(String name, int legs, Boolean mammal) {
+  public String getDiet(){
+    return diet;
+  }
+
+  public Animal(String name, int legs, Boolean mammal, String diet) {
     this.name = name;
     this.legs = legs;
     this.mammal = mammal;
+    this.diet = diet;
   }
 
 }
