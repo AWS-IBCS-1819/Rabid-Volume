@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class ButtonExamples extends JFrame {
   public ButtonExamples(){
@@ -17,6 +20,14 @@ public class ButtonExamples extends JFrame {
     Container c = getContentPane();
     JTextArea a = new JTextArea();
     c.add(a, BorderLayout.CENTER);
+
+//    final String picPath = "C:/Desktop/snail.png";
+      ImageIcon image = new ImageIcon("C:\\Desktop\\snail.png");
+      JLabel imageLabel = new JLabel(image);
+      imageLabel.setBounds(100, 100, 100, 100);
+      //setVisible(true);
+
+
 
     JButton yeet = new JButton("Yeet");
     yeet.setBackground(Color.yellow);
@@ -32,13 +43,14 @@ public class ButtonExamples extends JFrame {
 
     yeet.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
-        a.append("Cool Beans");
+        a.append("To the left\n");
+
       }
     });
 
     yote.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
-        a.append("Cha Cha real smooth");
+        a.append("Cha Cha real smooth\n");
       }
     });
 
@@ -48,7 +60,6 @@ public class ButtonExamples extends JFrame {
         } //windowClosing
     } );
 
-    c.add(new JLabel(new ImageIcon("snail.png")));
   }
 
   public static void main(String[] args) {
