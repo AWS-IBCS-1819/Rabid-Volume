@@ -1,56 +1,62 @@
-import javax.swing.*;
-import javax.swing.SwingUtilities;
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.BorderLayout;
-import java.awt.Container;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class ButtonExamples extends JFrame {
   public ButtonExamples(){
     setTitle("Button Examples");
     setSize(400,400);
 
-    setLayout(new BorderLayout());
-    Container c = getContentPane();
+    setLayout(new FlowLayout());
+//    setLayout(new BorderLayout());
+//    Container c = getContentPane();
     JTextArea a = new JTextArea();
-    c.add(a, BorderLayout.CENTER);
+    add(a);
+//    c.add(a, BorderLayout.CENTER);
 
 //    final String picPath = "C:/Desktop/snail.png";
-      ImageIcon image = new ImageIcon("C:\\Desktop\\snail.png");
-      JLabel imageLabel = new JLabel(image);
-      imageLabel.setBounds(100, 100, 100, 100);
-      //setVisible(true);
-
-
+      ImageIcon snailpng = new ImageIcon("C:snail.png", "snail");
+      JLabel label1 = new JLabel("Snail", snailpng, JLabel.CENTER);
+      add(label1);
 
     JButton yeet = new JButton("Yeet");
     yeet.setBackground(Color.yellow);
     yeet.setForeground(Color.red);
-    yeet.setOpaque(true);
-    c.add(yeet, BorderLayout.NORTH);
+    yeet.setOpaque(false);
+    add(yeet);
+//    yeet.setBounds(10,10,10,10);
+//    c.add(yeet, BorderLayout.NORTH);
 
-    JButton yote = new JButton("Yote");
-    yote.setBackground(Color.red);
-    yote.setForeground(Color.yellow);
-    yote.setOpaque(true);
-    c.add(yote, BorderLayout.SOUTH);
+  JButton yote = new JButton("Yote");
+  yote.setBackground(Color.red);
+  yote.setForeground(Color.yellow);
+  yote.setOpaque(false);
+  add(yote);
+
+  CheckboxGroup gg = new CheckboxGroup();
+  Checkbox za = new Checkbox("Great", gg, false);
+  Checkbox ff = new Checkbox("Jeet", gg, false);
+  add(za);
+  add(ff);
+
+//    yote.setOpaque(true);
+//    c.add(yote, BorderLayout.SOUTH);
 
     yeet.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
-        a.append("To the left\n");
-
+        a.append("Fliip\n");
+        yote.setOpaque(true);
+        yeet.setOpaque(false);
       }
     });
 
     yote.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
-        a.append("Cha Cha real smooth\n");
+        a.append("Flip\n");
+        yote.setOpaque(false);
+        yeet.setOpaque(true);
       }
     });
 
