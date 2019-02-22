@@ -30,7 +30,7 @@ public class Restaurant extends JFrame {
 
     setLayout(null);
     a=new JTextArea();
-    a.setBounds(600,300,100,200);
+    a.setBounds(600,400,150,200);
     add(a);
 
     nuts = new Button("Donuts"); //actionPerformed for the button could be showing the checkbox
@@ -51,11 +51,43 @@ public class Restaurant extends JFrame {
     choc.setVisible(false);
     straw.setVisible(false);
 
+    String[] s1 = {"1", "2","3", "4", "5"};
+    JComboBox<String> amount = new JComboBox<String>(s1);
+    add(amount);
+    amount.setBounds(250, 120, 70, 50);
+    amount.setVisible(false);
+
+//    amount.setSelectedIndex(4);
+//    amount.addItemListener(this);
+
+//      public void actionPerformed(ActionEvent e) {
+//        JComboBox cb = (JComboBox)e.getSource();
+//        String s1 = (String)cb.getSelectedItem();
+//        updateLabel(petName);
+//      }
+
+//  }
+
+
+
+    JComboBox<String> b = new JComboBox<String>(s1);
+    add(b);
+    b.setBounds(250, 180, 70, 50);
+    b.setVisible(false);
+
+    JComboBox<String> c = new JComboBox<String>(s1);
+    add(c);
+    c.setBounds(250, 240, 70, 50);
+    c.setVisible(false);
+
     nuts.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         van.setVisible(true);
         choc.setVisible(true);
         straw.setVisible(true);
+        amount.setVisible(true);
+        b.setVisible(true);
+        c.setVisible(true);
       }
     });
 
@@ -77,11 +109,29 @@ public class Restaurant extends JFrame {
     cho.setVisible(false);
     stra.setVisible(false);
 
+    JComboBox<String> amoun = new JComboBox<String>(s1);
+    add(amoun);
+    amoun.setBounds(300, 320, 70, 50);
+    amoun.setVisible(false);
+
+    JComboBox<String> h = new JComboBox<String>(s1);
+    add(h);
+    h.setBounds(250, 386, 70, 50);
+    h.setVisible(false);
+
+    JComboBox<String> j = new JComboBox<String>(s1);
+    add(j);
+    j.setBounds(300, 440, 70, 50);
+    j.setVisible(false);
+
     bis.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         va.setVisible(true);
         cho.setVisible(true);
         stra.setVisible(true);
+        amoun.setVisible(true);
+        h.setVisible(true);
+        j.setVisible(true);
       }
     });
 
@@ -110,14 +160,39 @@ public class Restaurant extends JFrame {
     butter.setVisible(false);
     cream.setVisible(false);
 
+    JComboBox<String> amou = new JComboBox<String>(s1);
+    add(amou);
+    amou.setBounds(250, 520, 70, 50);
+    amou.setVisible(false);
+
+    JComboBox<String> d = new JComboBox<String>(s1);
+    add(d);
+    d.setBounds(250, 580, 70, 50);
+    d.setVisible(false);
+
+    JComboBox<String> f = new JComboBox<String>(s1);
+    add(f);
+    f.setBounds(445, 520, 70, 50);
+    f.setVisible(false);
+
+    JComboBox<String> l = new JComboBox<String>(s1);
+    add(l);
+    l.setBounds(445, 580, 70, 50);
+    l.setVisible(false);
+
     cup.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         vanilla.setVisible(true);
         chunk.setVisible(true);
-        cream.setVisible(true);
         butter.setVisible(true);
+        cream.setVisible(true);
+        amou.setVisible(true);
+        d.setVisible(true);
+        f.setVisible(true);
+        l.setVisible(true);
       }
     });
+
 
     addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent e) {
