@@ -1,11 +1,3 @@
-//interact with stuff and then make a bill
-
-//three buttons
-//a checkbox for each button
-//a dropbox for each button for amount
-//display choices once clicked
-//text area for other comments
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -15,7 +7,10 @@ public class Restaurant extends JFrame {
   Button nuts;
   Button bis;
   Button cup;
+  Button submit;
+
   JTextArea a;
+
   Checkbox van;
   Checkbox choc;
   Checkbox straw;
@@ -26,6 +21,7 @@ public class Restaurant extends JFrame {
   Checkbox chunk;
   Checkbox butter;
   Checkbox cream;
+
   JComboBox amount;
   JComboBox b;
   JComboBox c;
@@ -36,9 +32,8 @@ public class Restaurant extends JFrame {
   JComboBox d;
   JComboBox f;
   JComboBox l;
-  JLabel nut;
-  ArrayList receipt;
 
+  JLabel nut;
 
   public Restaurant() {
 
@@ -46,6 +41,16 @@ public class Restaurant extends JFrame {
     a=new JTextArea();
     a.setBounds(600,400,150,200);
     add(a);
+
+    submit = new Button("Sumbit Item to Order");
+    submit.setBounds(550, 150, 200, 30);
+    add(submit);
+
+    submit.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e){
+        a.append(nut.getText()+"\n");
+      }
+    });
 
     nuts = new Button("Donuts"); //actionPerformed for the button could be showing the checkbox
     nuts.setBounds(20, 100, 100, 30);
@@ -113,7 +118,6 @@ public class Restaurant extends JFrame {
     amount.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e){
         nut.setText(amount.getSelectedItem() + " Vanilla Donut");
-        System.out.println("Vanilla Donut"+ amount.getSelectedItem());
       }
     });
 
@@ -125,7 +129,6 @@ public class Restaurant extends JFrame {
     b.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e){
         nut.setText(b.getSelectedItem() + " Chocolate Donut");
-        System.out.println("Chocolate Donut"+ b.getSelectedItem());
       }
     });
 
@@ -133,6 +136,12 @@ public class Restaurant extends JFrame {
     add(c);
     c.setBounds(250, 240, 70, 50);
     c.setVisible(false);
+
+    c.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(c.getSelectedItem() + " Strawberry Donut");
+      }
+    });
 
     nuts.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
@@ -166,7 +175,8 @@ public class Restaurant extends JFrame {
           if(checked == true) {
             amoun.setVisible(true);
           } else if (checked == false) {
-            amoun.setVisible(false);
+            amou.setVisible(false);
+            nut.setText("Order:");
           }
       }
     });
@@ -178,6 +188,7 @@ public class Restaurant extends JFrame {
             h.setVisible(true);
           } else if (checked == false) {
             h.setVisible(false);
+            nut.setText("Order:");
           }
       }
     });
@@ -189,6 +200,7 @@ public class Restaurant extends JFrame {
             j.setVisible(true);
           } else if (checked == false) {
             j.setVisible(false);
+            nut.setText("Order:");
           }
       }
     });
@@ -198,15 +210,33 @@ public class Restaurant extends JFrame {
     amoun.setBounds(300, 320, 70, 50);
     amoun.setVisible(false);
 
+    amoun.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(amoun.getSelectedItem() + " Snickerdoodle");
+      }
+    });
+
     h = new JComboBox<String>(s1);
     add(h);
     h.setBounds(250, 386, 70, 50);
     h.setVisible(false);
 
+    h.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(h.getSelectedItem() + " Sugar Cookies");
+      }
+    });
+
     j = new JComboBox<String>(s1);
     add(j);
     j.setBounds(300, 440, 70, 50);
     j.setVisible(false);
+
+    j.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(j.getSelectedItem() + " Ginger Snap");
+      }
+    });
 
     bis.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
@@ -246,6 +276,7 @@ public class Restaurant extends JFrame {
             amou.setVisible(true);
           } else if (checked == false) {
             amou.setVisible(false);
+            nut.setText("Order:");
           }
       }
     });
@@ -257,6 +288,7 @@ public class Restaurant extends JFrame {
             d.setVisible(true);
           } else if (checked == false) {
             d.setVisible(false);
+            nut.setText("Order:");
           }
       }
     });
@@ -268,6 +300,7 @@ public class Restaurant extends JFrame {
             f.setVisible(true);
           } else if (checked == false) {
             f.setVisible(false);
+            nut.setText("Order:");
           }
       }
     });
@@ -279,6 +312,7 @@ public class Restaurant extends JFrame {
             l.setVisible(true);
           } else if (checked == false) {
             l.setVisible(false);
+            nut.setText("Order:");
           }
       }
     });
@@ -288,20 +322,44 @@ public class Restaurant extends JFrame {
     amou.setBounds(250, 520, 70, 50);
     amou.setVisible(false);
 
+    amou.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(amou.getSelectedItem() + " Vanilla Cake");
+      }
+    });
+
     d = new JComboBox<String>(s1);
     add(d);
     d.setBounds(250, 580, 70, 50);
     d.setVisible(false);
+
+    d.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(d.getSelectedItem() + " Chocolate Cake");
+      }
+    });
 
     f = new JComboBox<String>(s1);
     add(f);
     f.setBounds(445, 520, 70, 50);
     f.setVisible(false);
 
+    f.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(f.getSelectedItem() + " Frosting");
+      }
+    });
+
     l = new JComboBox<String>(s1);
     add(l);
     l.setBounds(445, 580, 70, 50);
     l.setVisible(false);
+
+    l.addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent e){
+        nut.setText(l.getSelectedItem() + " Frosting");
+      }
+    });
 
     cup.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
