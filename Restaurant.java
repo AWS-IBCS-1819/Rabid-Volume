@@ -1,5 +1,5 @@
 //need to set a price thingie
-//need to do colors and set instructions at the top
+//need to do colors
 //need to make it pretty
 
 import java.awt.*;
@@ -38,6 +38,12 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
   JComboBox d;
 
   JLabel nut;
+  JLabel title;
+  JLabel instruct;
+
+  String s1[] = {"0","1", "2","3", "4", "5"};
+  Integer s2[] = {2, 3, 4, 5, 6};
+  Integer totalOrder = 0;
 
   public Restaurant() {
 
@@ -46,6 +52,14 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     a.setBounds(600,100,150,200);
     add(a);
     a.setVisible(false);
+
+    title = new JLabel("Welcome to the online ordering system of Sweets and Treats!");
+    add(title);
+    title.setBounds(160, 50, 400, 20);
+
+    instruct = new JLabel("To place your order, click 'submit item to order' after each item");
+    add(instruct);
+    instruct.setBounds(150, 80, 500, 20);
 
     finalSumbit = new Button("Submit your Order");
     finalSumbit.setBounds(550, 500, 200, 30);
@@ -69,7 +83,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
 
     nut = new JLabel("Order:");
     add(nut);
-    nut.setBounds(550, 50, 200, 300);
+    nut.setBounds(550, 50, 250, 300);
 
     van = new Checkbox("Vanilla");
     van.setBounds(150, 100, 100, 100);
@@ -88,8 +102,6 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     van.addItemListener(this);
     choc.addItemListener(this);
     straw.addItemListener(this);
-
-    String[] s1 = {"0","1", "2","3", "4", "5"};
 
     amount = new JComboBox<String>(s1);
     add(amount);
@@ -204,13 +216,13 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent e) {
          System.exit(0);
-        } //windowClosing
+        }
     } );
-
   }
 
   public void actionPerformed(ActionEvent e){
     Object src = e.getSource();
+
     if(src == finalSumbit){
       JFrame j = new JFrame("Receipt");
       j.setVisible(true);
@@ -218,22 +230,27 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
       JTextArea h = new JTextArea();
       j.add(h);
       h.setBounds(0, 0, 300, 300);
-      h.append(a.getText() + "\n" + u.getText());
+      moneyAmount();
+      h.append("Your order is:\n"+a.getText() + "\nTotal is " + totalOrder + "\n" + u.getText()+ "\n\nHave a lovely day!");
     }
+
     if(src == submit){
       a.append(nut.getText()+"\n");
       nut.setText("Item Submited!");
     }
+
     if(src == nuts){
       van.setVisible(true);
       choc.setVisible(true);
       straw.setVisible(true);
     }
+
     if(src == bis) {
       va.setVisible(true);
       cho.setVisible(true);
       stra.setVisible(true);
     }
+
     if(src == cup){
       vanilla.setVisible(true);
       chunk.setVisible(true);
@@ -241,6 +258,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
   }
 
   public void itemStateChanged(ItemEvent e){
+
     if(e.getSource() == van) {
     boolean checked = van.getState();
       if(checked == true) {
@@ -250,6 +268,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
         nut.setText("Order:");
       }
     }
+
     if(e.getSource() == choc) {
       boolean checked = choc.getState();
         if(checked == true) {
@@ -259,6 +278,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           nut.setText("Order:");
         }
     }
+
     if(e.getSource() == straw) {
       boolean checked = straw.getState();
         if(checked == true) {
@@ -267,15 +287,61 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           c.setVisible(false);
         }
     }
+
     if(e.getSource() == amount) {
-      nut.setText(amount.getSelectedItem() + " Vanilla Donut");
+      if(amount.getSelectedItem() == s1[1]){
+        nut.setText(amount.getSelectedItem() + " Vanilla Donut .... " + s2[0]);
+      }
+      if(amount.getSelectedItem() == s1[2]) {
+        nut.setText(amount.getSelectedItem() + " Vanilla Donuts .... " + s2[1]);
+      }
+      if(amount.getSelectedItem() == s1[3]) {
+        nut.setText(amount.getSelectedItem() + " Vanilla Donuts .... " + s2[2]);
+      }
+      if(amount.getSelectedItem() == s1[4]) {
+        nut.setText(amount.getSelectedItem() + " Vanilla Donuts .... " + s2[3]);
+      }
+      if(amount.getSelectedItem() == s1[5]) {
+        nut.setText(amount.getSelectedItem() + " Vanilla Donuts .... " + s2[4]);
+      }
     }
+
     if(e.getSource() == b) {
-      nut.setText(b.getSelectedItem() + " Chocolate Donut");
+      if(b.getSelectedItem() == s1[1]){
+        nut.setText(b.getSelectedItem() + " Chocolate Donut .... " + s2[0]);
+      }
+      if(b.getSelectedItem() == s1[2]) {
+        nut.setText(b.getSelectedItem() + " Chocolate Donuts .... " + s2[1]);
+      }
+      if(b.getSelectedItem() == s1[3]) {
+        nut.setText(b.getSelectedItem() + " Chocolate Donuts .... " + s2[2]);
+      }
+      if(b.getSelectedItem() == s1[4]) {
+        nut.setText(b.getSelectedItem() + " Chocolate Donuts .... " + s2[3]);
+      }
+      if(b.getSelectedItem() == s1[5]) {
+        nut.setText(b.getSelectedItem() + " Chocolate Donuts .... " + s2[4]);
+      }
     }
+
     if(e.getSource() == c) {
-      nut.setText(c.getSelectedItem() + " Strawberry Donut");
+      if(c.getSelectedItem() == s1[1]){
+        nut.setText(c.getSelectedItem() + " Strawberry Donut .... " + s2[0]);
+      }
+      if(c.getSelectedItem() == s1[2]) {
+        nut.setText(c.getSelectedItem() + " Strawberry Donuts .... " + s2[1]);
+      }
+      if(c.getSelectedItem() == s1[3]) {
+        nut.setText(c.getSelectedItem() + " Strawberry Donuts .... " + s2[2]);
+      }
+      if(c.getSelectedItem() == s1[4]) {
+        nut.setText(c.getSelectedItem() + " Strawberry Donuts .... " + s2[3]);
+      }
+      if(c.getSelectedItem() == s1[5]) {
+        nut.setText(c.getSelectedItem() + " Strawberry Donuts .... " + s2[4]);
+      }
     }
+
     if(e.getSource() == va) {
       boolean checked = va.getState();
         if(checked == true) {
@@ -285,6 +351,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           nut.setText("Order:");
         }
     }
+
     if(e.getSource() == cho){
       boolean checked = cho.getState();
         if(checked == true) {
@@ -294,6 +361,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           nut.setText("Order:");
         }
     }
+
     if(e.getSource() == stra) {
       boolean checked = stra.getState();
       if(checked == true) {
@@ -303,15 +371,61 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
         nut.setText("Order:");
       }
     }
+
     if(e.getSource() == amoun){
-      nut.setText(amoun.getSelectedItem() + " Snickerdoodle");
+      if(amoun.getSelectedItem() == s1[1]){
+        nut.setText(amoun.getSelectedItem() + " Snickerdoodle .... " + s2[0]);
+      }
+      if(amoun.getSelectedItem() == s1[2]) {
+        nut.setText(amoun.getSelectedItem() + " Snickerdoodles .... " + s2[1]);
+      }
+      if(amoun.getSelectedItem() == s1[3]) {
+        nut.setText(amoun.getSelectedItem() + " Snickerdoodles .... " + s2[2]);
+      }
+      if(amoun.getSelectedItem() == s1[4]) {
+        nut.setText(amoun.getSelectedItem() + " Snickerdoodles .... " + s2[3]);
+      }
+      if(amoun.getSelectedItem() == s1[5]) {
+        nut.setText(amoun.getSelectedItem() + " Snickerdoodles .... " + s2[4]);
+      }
     }
+
     if(e.getSource()== h){
-      nut.setText(h.getSelectedItem() + " Sugar Biscuits");
+      if(h.getSelectedItem() == s1[1]){
+        nut.setText(h.getSelectedItem() + " Sugar Biscuit .... " + s2[0]);
+      }
+      if(h.getSelectedItem() == s1[2]) {
+        nut.setText(h.getSelectedItem() + " Sugar Biscuits .... " + s2[1]);
+      }
+      if(h.getSelectedItem() == s1[3]) {
+        nut.setText(h.getSelectedItem() + " Sugar Biscuits .... " + s2[2]);
+      }
+      if(h.getSelectedItem() == s1[4]) {
+        nut.setText(h.getSelectedItem() + " Sugar Biscuits .... " + s2[3]);
+      }
+      if(h.getSelectedItem() == s1[5]) {
+        nut.setText(h.getSelectedItem() + " Sugar Biscuits .... " + s2[4]);
+      }
     }
+
     if(e.getSource() == j) {
-      nut.setText(j.getSelectedItem() + " Ginger Snap");
+      if(j.getSelectedItem() == s1[1]){
+        nut.setText(j.getSelectedItem() + " Ginger Snap .... " + s2[0]);
+      }
+      if(j.getSelectedItem() == s1[2]) {
+        nut.setText(j.getSelectedItem() + " Ginger Snaps .... " + s2[1]);
+      }
+      if(j.getSelectedItem() == s1[3]) {
+        nut.setText(j.getSelectedItem() + " Ginger Snaps .... " + s2[2]);
+      }
+      if(j.getSelectedItem() == s1[4]) {
+        nut.setText(j.getSelectedItem() + " Ginger Snaps .... " + s2[3]);
+      }
+      if(j.getSelectedItem() == s1[5]) {
+        nut.setText(j.getSelectedItem() + " Ginger Snaps .... " + s2[4]);
+      }
     }
+
     if(e.getSource() == vanilla) {
       boolean checked = vanilla.getState();
         if(checked == true) {
@@ -325,6 +439,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           nut.setText("Order:");
         }
     }
+
     if(e.getSource() == chunk){
       boolean checked = chunk.getState();
         if(checked == true) {
@@ -338,6 +453,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           nut.setText("Order:");
         }
     }
+
     if(e.getSource() == butter) {
       boolean checked = butter.getState();
         if(checked == true) {
@@ -346,6 +462,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           nut.setText("Order:");
         }
     }
+
     if(e.getSource() == cream){
       boolean checked = cream.getState();
         if(checked == true) {
@@ -354,12 +471,174 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
           nut.setText("Order:");
         }
     }
+
     if(e.getSource() == amou) {
-      nut.setText(amou.getSelectedItem() + " Vanilla Cake");
+      if(amou.getSelectedItem() == s1[1]){
+        nut.setText(amou.getSelectedItem() + " Vanilla Cake .... " + s2[2]);
+      }
+      if(amou.getSelectedItem() == s1[2]) {
+        nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[3]);
+      }
+      if(amou.getSelectedItem() == s1[3]) {
+        nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[3]);
+      }
+      if(amou.getSelectedItem() == s1[4]) {
+        nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[4]);
+      }
+      if(amou.getSelectedItem() == s1[5]) {
+        nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[4]);
+      }
     }
+
     if(e.getSource() == d){
-      nut.setText(d.getSelectedItem() + " Chocolate Cake");
+      if(d.getSelectedItem() == s1[1]){
+        nut.setText(d.getSelectedItem() + " Chocolate Cake .... " + s2[2]);
+      }
+      if(d.getSelectedItem() == s1[2]) {
+        nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[3]);
+      }
+      if(d.getSelectedItem() == s1[3]) {
+        nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[3]);
+      }
+      if(d.getSelectedItem() == s1[4]) {
+        nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[4]);
+      }
+      if(d.getSelectedItem() == s1[5]) {
+        nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[4]);
+      }
     }
+  }
+
+  public void moneyAmount() {
+
+    if(amount.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[0];
+    }
+    if(amount.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[1];
+    }
+    if(amount.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(amount.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(amount.getSelectedItem() == s1[5]){
+      totalOrder = totalOrder + s2[4];
+    }
+
+    if(b.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[0];
+    }
+    if(b.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[1];
+    }
+    if(b.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(b.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(b.getSelectedItem() == s1[5]) {
+      totalOrder = totalOrder + s2[4];
+    }
+
+    if(c.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[0];
+    }
+    if(c.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[1];
+    }
+    if(c.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(c.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(c.getSelectedItem() == s1[5]) {
+      totalOrder = totalOrder + s2[4];
+    }
+
+    if(amoun.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[0];
+    }
+    if(amoun.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[1];
+    }
+    if(amoun.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(amoun.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(amoun.getSelectedItem() == s1[5]) {
+      totalOrder = totalOrder + s2[4];
+    }
+
+    if(h.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[0];
+    }
+    if(h.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[1];
+    }
+    if(h.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(h.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(h.getSelectedItem() == s1[5]) {
+      totalOrder = totalOrder + s2[4];
+    }
+
+    if(j.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[0];
+    }
+    if(j.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[1];
+    }
+    if(j.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(j.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(j.getSelectedItem() == s1[5]) {
+      totalOrder = totalOrder + s2[4];
+    }
+
+    if(amou.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(amou.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(amou.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(amou.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[4];
+    }
+    if(amou.getSelectedItem() == s1[5]) {
+      totalOrder = totalOrder + s2[4];
+    }
+
+    if(d.getSelectedItem() == s1[1]) {
+      totalOrder = totalOrder + s2[2];
+    }
+    if(d.getSelectedItem() == s1[2]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(d.getSelectedItem() == s1[3]) {
+      totalOrder = totalOrder + s2[3];
+    }
+    if(d.getSelectedItem() == s1[4]) {
+      totalOrder = totalOrder + s2[4];
+    }
+    if(d.getSelectedItem() == s1[5]) {
+      totalOrder = totalOrder + s2[4];
+    }
+
   }
 
   public static void main(String[] args) {
