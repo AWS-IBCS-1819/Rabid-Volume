@@ -1,7 +1,3 @@
-//need to set a price thingie
-//need to do colors
-//need to make it pretty
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -38,8 +34,9 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
   JComboBox d;
 
   JLabel nut;
-  JLabel title;
   JLabel instruct;
+  JLabel blah;
+  JLabel hh;
 
   String s1[] = {"0","1", "2","3", "4", "5"};
   Double s2[] = {2.01, 3.01, 4.01, 5.01, 6.01};
@@ -54,13 +51,25 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     add(a);
     a.setVisible(false);
 
-    title = new JLabel("Welcome to the online ordering system of Sweets and Treats!");
-    add(title);
-    title.setBounds(160, 50, 400, 20);
-
-    instruct = new JLabel("To place your order, click 'submit item to order' after each item. Comments do not need to be submitted.");
+    instruct = new JLabel("You need to 'submit item to order' after choosing an item amount.");
     add(instruct);
-    instruct.setBounds(50, 80, 700, 20);
+    instruct.setBounds(140, 40, 700, 20);
+    instruct.setFont(new Font("Comic Sans", Font.BOLD, 15));
+    instruct.setForeground(Color.RED);
+
+    JLabel instruct2 = new JLabel("Otherwise the item will not be added.");
+    add(instruct2);
+    instruct2.setBounds(230, 60, 700, 20);
+    instruct2.setFont(new Font("Comic Sans", Font.BOLD, 15));
+    instruct2.setForeground(Color.RED);
+
+    blah = new JLabel("Comments are automatically");
+    add(blah);
+    blah.setBounds(550, 250, 200, 20);
+
+    hh = new JLabel("submitted.");
+    add(hh);
+    hh.setBounds(560, 270, 200, 20);
 
     finalSumbit = new Button("Submit your Order");
     finalSumbit.setBounds(550, 500, 200, 30);
@@ -80,7 +89,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
 
     submit.addActionListener(this);
 
-    nuts = new Button("Donuts"); //actionPerformed for the button could be showing the checkbox
+    nuts = new Button("Donuts");
     nuts.setBounds(20, 100, 100, 30);
     add(nuts);
     nuts.setBackground(Color.YELLOW);
@@ -437,12 +446,8 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
       boolean checked = vanilla.getState();
         if(checked == true) {
           amou.setVisible(true);
-          butter.setVisible(true);
-          cream.setVisible(true);
         } else if (checked == false) {
           amou.setVisible(false);
-          butter.setVisible(false);
-          cream.setVisible(false);
           nut.setText("Order:");
         }
     }
@@ -451,12 +456,8 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
       boolean checked = chunk.getState();
         if(checked == true) {
           d.setVisible(true);
-          butter.setVisible(true);
-          cream.setVisible(true);
         } else if (checked == false) {
           d.setVisible(false);
-          butter.setVisible(false);
-          cream.setVisible(false);
           nut.setText("Order:");
         }
     }
@@ -482,36 +483,56 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     if(e.getSource() == amou) {
       if(amou.getSelectedItem() == s1[1]){
         nut.setText(amou.getSelectedItem() + " Vanilla Cake .... " + s2[2]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(amou.getSelectedItem() == s1[2]) {
         nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[3]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(amou.getSelectedItem() == s1[3]) {
         nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[3]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(amou.getSelectedItem() == s1[4]) {
         nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[4]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(amou.getSelectedItem() == s1[5]) {
         nut.setText(amou.getSelectedItem() + " Vanilla Cakes .... " + s2[4]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
     }
 
     if(e.getSource() == d){
       if(d.getSelectedItem() == s1[1]){
         nut.setText(d.getSelectedItem() + " Chocolate Cake .... " + s2[2]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(d.getSelectedItem() == s1[2]) {
         nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[3]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(d.getSelectedItem() == s1[3]) {
         nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[3]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(d.getSelectedItem() == s1[4]) {
         nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[4]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
       if(d.getSelectedItem() == s1[5]) {
         nut.setText(d.getSelectedItem() + " Chocolate Cakes .... " + s2[4]);
+        butter.setVisible(true);
+        cream.setVisible(true);
       }
     }
   }
@@ -652,6 +673,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     Restaurant myWindow = new Restaurant();
     myWindow.setSize(800,700);
     myWindow.setVisible(true);
+    myWindow.setTitle("Welcome to the online ordering system of Sweets and Treats!");
   }
 
 }
