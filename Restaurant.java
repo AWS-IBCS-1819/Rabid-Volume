@@ -42,12 +42,13 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
   JLabel instruct;
 
   String s1[] = {"0","1", "2","3", "4", "5"};
-  Integer s2[] = {2, 3, 4, 5, 6};
-  Integer totalOrder = 0;
+  Double s2[] = {2.01, 3.01, 4.01, 5.01, 6.01};
+  Double totalOrder = 0.0;
 
   public Restaurant() {
 
     setLayout(null);
+    setBackground(Color.ORANGE);
     a=new JTextArea();
     a.setBounds(600,100,150,200);
     add(a);
@@ -57,14 +58,15 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     add(title);
     title.setBounds(160, 50, 400, 20);
 
-    instruct = new JLabel("To place your order, click 'submit item to order' after each item");
+    instruct = new JLabel("To place your order, click 'submit item to order' after each item. Comments do not need to be submitted.");
     add(instruct);
-    instruct.setBounds(150, 80, 500, 20);
+    instruct.setBounds(50, 80, 700, 20);
 
     finalSumbit = new Button("Submit your Order");
     finalSumbit.setBounds(550, 500, 200, 30);
     add(finalSumbit);
     finalSumbit.addActionListener(this);
+    finalSumbit.setBackground(Color.MAGENTA);
 
     u= new JTextArea();
     u.setBounds(550, 300, 200, 150);
@@ -74,12 +76,14 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     submit = new Button("Sumbit Item to Order");
     submit.setBounds(550, 150, 200, 30);
     add(submit);
+    submit.setBackground(Color.MAGENTA);
 
     submit.addActionListener(this);
 
     nuts = new Button("Donuts"); //actionPerformed for the button could be showing the checkbox
     nuts.setBounds(20, 100, 100, 30);
     add(nuts);
+    nuts.setBackground(Color.YELLOW);
 
     nut = new JLabel("Order:");
     add(nut);
@@ -130,6 +134,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     bis.setBounds(20, 300, 100, 30);
     add(bis);
     bis.addActionListener(this);
+    bis.setBackground(Color.YELLOW);
 
     va = new Checkbox("Snickerdoodle");
     va.setBounds(150, 300, 150, 100);
@@ -174,6 +179,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
     cup.setBounds(20, 500, 100, 30);
     add(cup);
     cup.addActionListener(this);
+    cup.setBackground(Color.YELLOW);
 
     vanilla = new Checkbox("Vanilla");
     vanilla.setBounds(150, 500, 100, 100);
@@ -230,6 +236,7 @@ public class Restaurant extends Frame implements ActionListener, ItemListener {
       JTextArea h = new JTextArea();
       j.add(h);
       h.setBounds(0, 0, 300, 300);
+      h.setBackground(Color.PINK);
       moneyAmount();
       h.append("Your order is:\n"+a.getText() + "\nTotal is " + totalOrder + "\n" + u.getText()+ "\n\nHave a lovely day!");
     }
