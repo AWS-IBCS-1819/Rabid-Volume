@@ -16,6 +16,8 @@ Checkbox lowLeft;
 Checkbox lowCenter;
 Checkbox lowRight;
 
+Integer places[] = {1,2,3,4,5,6,7,8,9};
+
   public Tgame() {
     setLayout(null);
 
@@ -77,36 +79,46 @@ Checkbox lowRight;
 
     if(e.getSource() == topLeft) {
           topLeft.setBackground(Color.RED);
+          places[0] = 0;
           if(middleLeft.getState() == true) {
           lowLeft.setBackground(Color.YELLOW);
-          lowLeft.setState(true);
+          places[7] = 10;
+  //        lowLeft.setState(true);
         }
-        else{
-          if(lowRight.getState() == false) {
+          if(middleCenter.getState() == true) {
           lowRight.setBackground(Color.YELLOW);
-          lowRight.setState(true);
-         }
+  //        lowRight.setState(true);
+        }
+          if(topCenter.getState() == true) {
+            topRight.setBackground(Color.YELLOW);
+  //          topRight.setState(true);
+          }
+
          if(lowRight.getState() == true) {
            lowCenter.setBackground(Color.YELLOW);
-           lowCenter.setState(true);
+//           lowCenter.setState(true);
          }
-        }
+
+      else {
+        topCenter.setBackground(Color.YELLOW);
+  //      topCenter.setState(true);
+      }
     }
 
     if(e.getSource() == topCenter) {
         topCenter.setBackground(Color.RED);
         if(middleCenter.getState() == true) {
         lowCenter.setBackground(Color.YELLOW);
-        lowCenter.setState(true);
+  //      lowCenter.setState(true);
       }
       if(middleCenter.getState() == false) {
         if(topRight.getState() == false) {
           middleRight.setBackground(Color.YELLOW);
-          middleRight.setState(true);
+  //        middleRight.setState(true);
         }
         if(topRight.getState() == true) {
           topLeft.setBackground(Color.YELLOW);
-          topLeft.setState(true);
+  //        topLeft.setState(true);
         }
       }
      }
@@ -116,25 +128,25 @@ Checkbox lowRight;
         if(topCenter.getState() == true) {
           if(topLeft.getState() == false) {
             middleLeft.setBackground(Color.YELLOW);
-            middleLeft.setState(true);
+  //          middleLeft.setState(true);
           }
           if(topCenter.getState() == false) {
           topLeft.setBackground(Color.YELLOW);
-          topLeft.setState(true);
+  //        topLeft.setState(true);
         }
         }
         if(middleRight.getState() == true) {
           lowRight.setBackground(Color.YELLOW);
-          lowRight.setState(true);
+  //        lowRight.setState(true);
         }
         else{
           if(lowLeft.getState() == true) {
             middleLeft.setBackground(Color.YELLOW);
-            middleLeft.setState(true);
+  //          middleLeft.setState(true);
           }
           if(lowLeft.getState() == false) {
             lowLeft.setBackground(Color.YELLOW);
-            lowLeft.setState(true);
+  //          lowLeft.setState(true);
           }
         }
       }
@@ -143,16 +155,16 @@ Checkbox lowRight;
       middleLeft.setBackground(Color.RED);
       if(topLeft.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
-        lowLeft.setState(true);
+  //      lowLeft.setState(true);
       }
       else {
         if(middleRight.getState() == false) {
       middleRight.setBackground(Color.YELLOW);
-      middleRight.setState(true);
+  //    middleRight.setState(true);
     }
       if(middleRight.getState() == true) {
         topCenter.setBackground(Color.YELLOW);
-        topCenter.setState(true);
+  //      topCenter.setState(true);
       }
      }
     }
@@ -161,28 +173,28 @@ Checkbox lowRight;
       middleCenter.setBackground(Color.RED);
       if(topCenter.getState() == true) {
       lowCenter.setBackground(Color.YELLOW);
-      lowCenter.setState(true);
+  //    lowCenter.setState(true);
      }
      if(lowCenter.getState() == true) {
        topCenter.setBackground(Color.YELLOW);
-       topCenter.setState(true);
+  //     topCenter.setState(true);
      }
      if(middleRight.getState() == true) {
        middleLeft.setBackground(Color.YELLOW);
-       middleLeft.setState(true);
+  //     middleLeft.setState(true);
      }
      if(topLeft.getState() == true) {
        lowRight.setBackground(Color.YELLOW);
-       lowRight.setState(true);
+  //     lowRight.setState(true);
      }
      if(lowLeft.getState() == true) {
        topRight.setBackground(Color.YELLOW);
-       topRight.setState(true);
+  //     topRight.setState(true);
      }
      else {
        if(topLeft.getState() == false) {
        topLeft.setBackground(Color.YELLOW);
-       topLeft.setState(true);
+  //     topLeft.setState(true);
       }
      }
 
@@ -192,11 +204,11 @@ Checkbox lowRight;
       middleRight.setBackground(Color.RED);
       if(topRight.getState() == true) {
         lowRight.setBackground(Color.YELLOW);
-        lowRight.setState(true);
+  //      lowRight.setState(true);
       }
       else {
       middleLeft.setBackground(Color.YELLOW);
-      middleLeft.setState(true);
+  //    middleLeft.setState(true);
       }
     }
 
@@ -205,21 +217,21 @@ Checkbox lowRight;
       if(middleCenter.getState() == true) {
         if(topRight.getState() == true) {
          lowRight.setBackground(Color.YELLOW);
-         lowRight.setState(true);
+  //       lowRight.setState(true);
         }
         if(topRight.getState() == false) {
         topRight.setBackground(Color.YELLOW);
-        topRight.setState(true);
+  //      topRight.setState(true);
         }
       }
       if(middleCenter.getState() == false) {
         if(middleLeft.getState() == true) {
           topLeft.setBackground(Color.YELLOW);
-          topLeft.setState(true);
+  //        topLeft.setState(true);
         }
         if(middleLeft.getState() == false) {
         middleCenter.setBackground(Color.YELLOW);
-        middleCenter.setState(true);
+  //      middleCenter.setState(true);
         }
       }
     }
@@ -228,11 +240,11 @@ Checkbox lowRight;
       lowCenter.setBackground(Color.RED);
       if(lowRight.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
-        lowLeft.setState(true);
+  //      lowLeft.setState(true);
       }
       else{
         topCenter.setBackground(Color.YELLOW);
-        topCenter.setState(true);
+  //      topCenter.setState(true);
       }
     }
 
@@ -240,20 +252,20 @@ Checkbox lowRight;
       lowRight.setBackground(Color.RED);
       if(lowCenter.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
-        lowLeft.setState(true);
+//        lowLeft.setState(true);
       }
       else {
         if(topLeft.getState() == false) {
          topLeft.setBackground(Color.YELLOW);
-         topLeft.setState(true);
+//         topLeft.setState(true);
         }
         if(topLeft.getState() == true) {
           middleRight.setBackground(Color.YELLOW);
-          middleRight.setState(true);
+//          middleRight.setState(true);
         }
         if(middleCenter.getState() == false) {
         middleCenter.setBackground(Color.YELLOW);
-        middleCenter.setState(true);
+//        middleCenter.setState(true);
        }
       }
     }
@@ -261,36 +273,11 @@ Checkbox lowRight;
   }
 
   public void Win() {
-
+    System.out.println(places);
   }
 
   public void Lose() {
-    if(topLeft.getState() == true) {
-      if(topCenter.getState() == true) {
-        if(topRight.getState() == true) {
-          if(middleLeft.getState() == true) {
-            if(middleCenter.getState() == true) {
-              if(middleRight.getState() == true) {
-                if(lowLeft.getState() == true) {
-                  if(lowCenter.getState() == true) {
-                    if(lowRight.getState() == true) {
-                      JFrame j = new JFrame("Results");
-                      j.setVisible(true);
-                      j.setSize(10000, 10000);
-                      JTextArea h = new JTextArea();
-                      j.add(h);
-                      h.setBounds(0, 0, 10000, 10000);
-                      h.setBackground(Color.PINK);
-                      h.append("You LOOOOOOOOOOOSE");
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+
   }
 
    public void paint(Graphics g) {
