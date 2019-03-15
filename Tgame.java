@@ -73,18 +73,22 @@ Checkbox lowRight;
 
   public void itemStateChanged(ItemEvent e) {
     Win();
+    Lose();
 
     if(e.getSource() == topLeft) {
           topLeft.setBackground(Color.RED);
           if(middleLeft.getState() == true) {
           lowLeft.setBackground(Color.YELLOW);
+          lowLeft.setState(true);
         }
         else{
           if(lowRight.getState() == false) {
           lowRight.setBackground(Color.YELLOW);
+          lowRight.setState(true);
          }
          if(lowRight.getState() == true) {
            lowCenter.setBackground(Color.YELLOW);
+           lowCenter.setState(true);
          }
         }
     }
@@ -92,16 +96,18 @@ Checkbox lowRight;
     if(e.getSource() == topCenter) {
         topCenter.setBackground(Color.RED);
         if(middleCenter.getState() == true) {
-        topRight.setBackground(Color.YELLOW);
+        lowCenter.setBackground(Color.YELLOW);
+        lowCenter.setState(true);
       }
-        if(topRight.getState() == true) {
+      if(middleCenter.getState() == false) {
+        if(topRight.getState() == false) {
           middleRight.setBackground(Color.YELLOW);
+          middleRight.setState(true);
         }
         if(topRight.getState() == true) {
           topLeft.setBackground(Color.YELLOW);
+          topLeft.setState(true);
         }
-      else{
-        lowCenter.setBackground(Color.YELLOW);
       }
      }
 
@@ -110,29 +116,43 @@ Checkbox lowRight;
         if(topCenter.getState() == true) {
           if(topLeft.getState() == false) {
             middleLeft.setBackground(Color.YELLOW);
+            middleLeft.setState(true);
           }
           if(topCenter.getState() == false) {
           topLeft.setBackground(Color.YELLOW);
+          topLeft.setState(true);
         }
         }
-        else {
+        if(middleRight.getState() == true) {
+          lowRight.setBackground(Color.YELLOW);
+          lowRight.setState(true);
+        }
+        else{
+          if(lowLeft.getState() == true) {
+            middleLeft.setBackground(Color.YELLOW);
+            middleLeft.setState(true);
+          }
           if(lowLeft.getState() == false) {
-         lowLeft.setBackground(Color.YELLOW);
-         }
-       }
+            lowLeft.setBackground(Color.YELLOW);
+            lowLeft.setState(true);
+          }
+        }
       }
 
     if(e.getSource() == middleLeft){
       middleLeft.setBackground(Color.RED);
       if(topLeft.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
+        lowLeft.setState(true);
       }
       else {
         if(middleRight.getState() == false) {
       middleRight.setBackground(Color.YELLOW);
+      middleRight.setState(true);
     }
       if(middleRight.getState() == true) {
         topCenter.setBackground(Color.YELLOW);
+        topCenter.setState(true);
       }
      }
     }
@@ -141,44 +161,65 @@ Checkbox lowRight;
       middleCenter.setBackground(Color.RED);
       if(topCenter.getState() == true) {
       lowCenter.setBackground(Color.YELLOW);
-     }
-     if(middleRight.getState() == true) {
-       middleLeft.setBackground(Color.YELLOW);
+      lowCenter.setState(true);
      }
      if(lowCenter.getState() == true) {
        topCenter.setBackground(Color.YELLOW);
+       topCenter.setState(true);
+     }
+     if(middleRight.getState() == true) {
+       middleLeft.setBackground(Color.YELLOW);
+       middleLeft.setState(true);
+     }
+     if(topLeft.getState() == true) {
+       lowRight.setBackground(Color.YELLOW);
+       lowRight.setState(true);
+     }
+     if(lowLeft.getState() == true) {
+       topRight.setBackground(Color.YELLOW);
+       topRight.setState(true);
      }
      else {
        if(topLeft.getState() == false) {
        topLeft.setBackground(Color.YELLOW);
+       topLeft.setState(true);
+      }
      }
-     if(topLeft.getState() == true) {
-       lowLeft.setBackground(Color.YELLOW);
-     }
-     }
+
     }
 
     if(e.getSource() == middleRight) {
       middleRight.setBackground(Color.RED);
       if(topRight.getState() == true) {
         lowRight.setBackground(Color.YELLOW);
+        lowRight.setState(true);
       }
       else {
       middleLeft.setBackground(Color.YELLOW);
+      middleLeft.setState(true);
       }
     }
 
     if(e.getSource() == lowLeft) {
       lowLeft.setBackground(Color.RED);
       if(middleCenter.getState() == true) {
-        topLeft.setBackground(Color.YELLOW);
-      }
-      else {
         if(topRight.getState() == true) {
-          lowRight.setBackground(Color.YELLOW);
+         lowRight.setBackground(Color.YELLOW);
+         lowRight.setState(true);
         }
         if(topRight.getState() == false) {
         topRight.setBackground(Color.YELLOW);
+        topRight.setState(true);
+        }
+      }
+      if(middleCenter.getState() == false) {
+        if(middleLeft.getState() == true) {
+          topLeft.setBackground(Color.YELLOW);
+          topLeft.setState(true);
+        }
+        if(middleLeft.getState() == false) {
+        middleCenter.setBackground(Color.YELLOW);
+        middleCenter.setState(true);
         }
       }
     }
@@ -187,9 +228,11 @@ Checkbox lowRight;
       lowCenter.setBackground(Color.RED);
       if(lowRight.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
+        lowLeft.setState(true);
       }
       else{
         topCenter.setBackground(Color.YELLOW);
+        topCenter.setState(true);
       }
     }
 
@@ -197,85 +240,57 @@ Checkbox lowRight;
       lowRight.setBackground(Color.RED);
       if(lowCenter.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
+        lowLeft.setState(true);
       }
       else {
         if(topLeft.getState() == false) {
          topLeft.setBackground(Color.YELLOW);
+         topLeft.setState(true);
         }
         if(topLeft.getState() == true) {
           middleRight.setBackground(Color.YELLOW);
+          middleRight.setState(true);
         }
         if(middleCenter.getState() == false) {
         middleCenter.setBackground(Color.YELLOW);
+        middleCenter.setState(true);
        }
       }
     }
+
   }
 
   public void Win() {
 
+  }
+
+  public void Lose() {
     if(topLeft.getState() == true) {
       if(topCenter.getState() == true) {
         if(topRight.getState() == true) {
-          System.out.println("You win");
+          if(middleLeft.getState() == true) {
+            if(middleCenter.getState() == true) {
+              if(middleRight.getState() == true) {
+                if(lowLeft.getState() == true) {
+                  if(lowCenter.getState() == true) {
+                    if(lowRight.getState() == true) {
+                      JFrame j = new JFrame("Results");
+                      j.setVisible(true);
+                      j.setSize(10000, 10000);
+                      JTextArea h = new JTextArea();
+                      j.add(h);
+                      h.setBounds(0, 0, 10000, 10000);
+                      h.setBackground(Color.PINK);
+                      h.append("You LOOOOOOOOOOOSE");
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
-    if(middleLeft.getState() == true) {
-      if(topLeft.getState() == true) {
-        if(lowLeft.getState() == true) {
-          System.out.println("You win!");
-        }
-      }
-    }
-    if(topCenter.getState() == true) {
-      if(middleCenter.getState() == true) {
-        if(lowCenter.getState() == true) {
-          System.out.println("you win");
-        }
-      }
-    }
-
-    if(topRight.getState() == true) {
-      if(middleRight.getState() == true) {
-        if(lowRight.getState() == true) {
-          System.out.println("You Win");
-        }
-      }
-    }
-
-    if(middleCenter.getState() == true) {
-      if(middleLeft.getState() == true) {
-        if(middleRight.getState() == true) {
-          System.out.println("Win, you do");
-        }
-      }
-    }
-
-    if(lowCenter.getState() == true) {
-      if(lowLeft.getState() == true) {
-        if(lowRight.getState() == true) {
-          System.out.println("Wiiiiin");
-        }
-      }
-    }
-
-    if(lowRight.getState() == true) {
-      if(middleCenter.getState() == true) {
-        if(topLeft.getState() == true) {
-          System.out.println("win");
-        }
-      }
-    }
-
-    if(lowLeft.getState() == true) {
-      if(middleCenter.getState() == true) {
-        if(topRight.getState() == true) {
-          System.out.println("Win! Win!");
-        }
-      }
-    }
-
   }
 
    public void paint(Graphics g) {
