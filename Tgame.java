@@ -16,8 +16,6 @@ Checkbox lowLeft;
 Checkbox lowCenter;
 Checkbox lowRight;
 
-Integer places[] = {1,2,3,4,5,6,7,8,9};
-
   public Tgame() {
     setLayout(null);
 
@@ -75,15 +73,16 @@ Integer places[] = {1,2,3,4,5,6,7,8,9};
 
   public void itemStateChanged(ItemEvent e) {
     Win();
-    Lose();
 
     if(e.getSource() == topLeft) {
           topLeft.setBackground(Color.RED);
-          places[0] = 0;
           if(middleLeft.getState() == true) {
           lowLeft.setBackground(Color.YELLOW);
-          places[7] = 10;
   //        lowLeft.setState(true);
+        }
+        else {
+          topCenter.setBackground(Color.YELLOW);
+    //      topCenter.setState(true);
         }
           if(middleCenter.getState() == true) {
           lowRight.setBackground(Color.YELLOW);
@@ -99,10 +98,6 @@ Integer places[] = {1,2,3,4,5,6,7,8,9};
 //           lowCenter.setState(true);
          }
 
-      else {
-        topCenter.setBackground(Color.YELLOW);
-  //      topCenter.setState(true);
-      }
     }
 
     if(e.getSource() == topCenter) {
@@ -175,6 +170,12 @@ Integer places[] = {1,2,3,4,5,6,7,8,9};
       lowCenter.setBackground(Color.YELLOW);
   //    lowCenter.setState(true);
      }
+     if(topLeft.getState() == true) {
+       lowRight.setBackground(Color.YELLOW);
+     }
+     else {
+       topLeft.setBackground(Color.YELLOW);
+     }
      if(lowCenter.getState() == true) {
        topCenter.setBackground(Color.YELLOW);
   //     topCenter.setState(true);
@@ -183,21 +184,13 @@ Integer places[] = {1,2,3,4,5,6,7,8,9};
        middleLeft.setBackground(Color.YELLOW);
   //     middleLeft.setState(true);
      }
-     if(topLeft.getState() == true) {
-       lowRight.setBackground(Color.YELLOW);
-  //     lowRight.setState(true);
-     }
      if(lowLeft.getState() == true) {
        topRight.setBackground(Color.YELLOW);
   //     topRight.setState(true);
      }
-     else {
-       if(topLeft.getState() == false) {
-       topLeft.setBackground(Color.YELLOW);
-  //     topLeft.setState(true);
-      }
+     if(topRight.getState() == true) {
+       lowLeft.setBackground(Color.YELLOW);
      }
-
     }
 
     if(e.getSource() == middleRight) {
@@ -273,11 +266,56 @@ Integer places[] = {1,2,3,4,5,6,7,8,9};
   }
 
   public void Win() {
-    System.out.println(places);
-  }
-
-  public void Lose() {
-
+    if(topLeft.getState() == true) {
+      if(topCenter.getState() == true) {
+        if(topRight.getState() == true) {
+          System.out.println("you win");
+        }
+      }
+      if(middleLeft.getState() == true) {
+        if(lowLeft.getState() == true) {
+          System.out.println("you win");
+        }
+      }
+      if(middleCenter.getState() == true) {
+        if(lowRight.getState() == true) {
+          System.out.println("you win");
+        }
+      }
+    }
+    if(topCenter.getState() == true) {
+      if(middleCenter.getState() == true) {
+        if(lowCenter.getState() == true) {
+          System.out.println("you win");
+        }
+      }
+    }
+    if(topRight.getState() == true) {
+      if(middleCenter.getState() == true) {
+        if(lowLeft.getState() == true) {
+          System.out.println("you win");
+        }
+      }
+      if(middleRight.getState() == true) {
+        if(lowRight.getState() == true) {
+          System.out.println("you Win");
+        }
+      }
+    }
+    if(middleLeft.getState() == true) {
+      if(middleCenter.getState() == true) {
+        if(middleRight.getState() == true) {
+          System.out.println("you win");
+        }
+      }
+    }
+    if(lowLeft.getState() == true) {
+      if(lowCenter.getState() == true) {
+        if(lowRight.getState() == true) {
+          System.out.println("you win");
+        }
+      }
+    }
   }
 
    public void paint(Graphics g) {
