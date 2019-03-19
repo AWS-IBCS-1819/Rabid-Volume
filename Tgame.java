@@ -3,8 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-public class Tgame extends Frame implements ItemListener {
+public class Tgame extends Frame implements ItemListener, ActionListener {
 Image board = new ImageIcon("Board.png").getImage();
+
+Button getResults;
 
 Checkbox topLeft;
 Checkbox topCenter;
@@ -18,6 +20,11 @@ Checkbox lowRight;
 
   public Tgame() {
     setLayout(null);
+
+    getResults = new Button("Get Results");
+    getResults.addActionListener(this);
+    getResults.setBounds(250, 30, 100, 30);
+    add(getResults);
 
     topLeft = new Checkbox();
     topLeft.addItemListener(this);
@@ -71,8 +78,14 @@ Checkbox lowRight;
     } );
   }
 
+  public void actionPerformed(ActionEvent e) {
+    if(e.getSource() == getResults) {
+      Win();
+      Lose(true);
+    }
+  }
+
   public void itemStateChanged(ItemEvent e) {
-    Win();
 
     if(e.getSource() == topLeft) {
           topLeft.setBackground(Color.RED);
@@ -106,6 +119,9 @@ Checkbox lowRight;
         lowCenter.setBackground(Color.YELLOW);
   //      lowCenter.setState(true);
       }
+      else {
+        lowRight.setBackground(Color.YELLOW);
+      }
       if(middleCenter.getState() == false) {
         if(topRight.getState() == false) {
           middleCenter.setBackground(Color.YELLOW);
@@ -116,7 +132,7 @@ Checkbox lowRight;
   //        topLeft.setState(true);
         }
       }
-      else {
+/*      else {
         if(lowRight.getState() == false) {
           lowRight.setBackground(Color.YELLOW);
         }
@@ -124,6 +140,7 @@ Checkbox lowRight;
           middleRight.setBackground(Color.YELLOW);
         }
       }
+*/
      }
 
     if(e.getSource() == topRight) {
@@ -164,12 +181,12 @@ Checkbox lowRight;
        middleRight.setBackground(Color.YELLOW);
   //    middleRight.setState(true);
     }
+    else {
+      lowCenter.setBackground(Color.YELLOW);
+   }
       if(lowLeft.getState() == true) {
         topLeft.setBackground(Color.YELLOW);
   //      topCenter.setState(true);
-     }
-     if(lowCenter.getState() == false) {
-       lowCenter.setBackground(Color.YELLOW);
      }
     }
 
@@ -181,9 +198,6 @@ Checkbox lowRight;
      }
      if(topLeft.getState() == true) {
        lowRight.setBackground(Color.YELLOW);
-     }
-     else {
-       topLeft.setBackground(Color.YELLOW);
      }
      if(lowCenter.getState() == true) {
        topCenter.setBackground(Color.YELLOW);
@@ -199,6 +213,12 @@ Checkbox lowRight;
      }
      if(topRight.getState() == true) {
        lowLeft.setBackground(Color.YELLOW);
+     }
+     if(middleLeft.getState() == true) {
+       middleRight.setBackground(Color.YELLOW);
+     }
+     else{
+       topLeft.setBackground(Color.YELLOW);
      }
     }
 
@@ -279,7 +299,6 @@ Checkbox lowRight;
   boolean K = true;
 
   public void Win() {
-    Lose(true);
     if(topLeft.getState() == true) {
       if(topCenter.getState() == true) {
         if(topRight.getState() == true) {
@@ -338,6 +357,9 @@ Checkbox lowRight;
         }
       }
     }
+    else {
+      Lose(true);
+    }
   }
 
   public void Lose(boolean K) {
@@ -390,6 +412,9 @@ Checkbox lowRight;
           System.out.println("Computer win");
         }
       }
+    }
+    else {
+      System.out.println("Draw");
     }
   }
 
