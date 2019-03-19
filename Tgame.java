@@ -119,9 +119,6 @@ Checkbox lowRight;
         lowCenter.setBackground(Color.YELLOW);
   //      lowCenter.setState(true);
       }
-      else {
-        lowRight.setBackground(Color.YELLOW);
-      }
       if(middleCenter.getState() == false) {
         if(topRight.getState() == false) {
           middleCenter.setBackground(Color.YELLOW);
@@ -356,9 +353,6 @@ Checkbox lowRight;
           Lose(false);
         }
       }
-    }
-    else {
-      Lose(true);
     }
   }
 
