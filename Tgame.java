@@ -1,12 +1,17 @@
+/*
+the major flaw I was not able to fix is when the user sets up a two-way win, the computer will
+go in both places to stop the user from winning
+*/
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-public class Tgame extends Frame implements ItemListener, ActionListener {
-Image board = new ImageIcon("Board.png").getImage();
+public class Tgame extends Frame implements ItemListener, ActionListener { //inheritance from frame, implement the listeners here allows me to create a big method later on
+Image board = new ImageIcon("Board.png").getImage(); //makes an image appear (constructor)
 
-Button getResults;
+Button getResults; //initialization of various components
 
 Checkbox topLeft;
 Checkbox topCenter;
@@ -19,9 +24,9 @@ Checkbox lowCenter;
 Checkbox lowRight;
 
   public Tgame() {
-    setLayout(null);
+    setLayout(null); //I wanted to be able to set the size of everything so I set the layout to null
 
-    getResults = new Button("Get Results");
+    getResults = new Button("Get Results"); //various constructor methods to set up a button and checkboxes
     getResults.addActionListener(this);
     getResults.setBounds(250, 30, 100, 30);
     add(getResults);
@@ -72,7 +77,7 @@ Checkbox lowRight;
     add(lowRight);
 
     addWindowListener(new WindowAdapter() { //only two things could be implemented in the inheritance decleration
-        public void windowClosing(WindowEvent e) { //declaring it within the class is the only way to do it
+        public void windowClosing(WindowEvent e) { //but I can declare it in the class
          System.exit(0);
         }
     } );
@@ -80,35 +85,32 @@ Checkbox lowRight;
 
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == getResults) {
-      Win();
-      Lose(true);
-    }
+      Win(); //I call two methods to test to see if the user has won or not
+      Lose(); //I made this button to only do this because when I called these methods else where they would not wait until the game was finished
+    } //so calling it only once lets the method go once the game is finished
   }
 
   public void itemStateChanged(ItemEvent e) {
 
-    if(e.getSource() == topLeft) {
-          topLeft.setBackground(Color.RED);
+    if(e.getSource() == topLeft) { //for Tgame I tried to do a "code for every possibility"
+          topLeft.setBackground(Color.RED); //mainly, I tried to step it up so if two were in a row then the computer would stop it
           if(middleLeft.getState() == true) {
-          lowLeft.setBackground(Color.YELLOW);
-  //        lowLeft.setState(true);
+          lowLeft.setBackground(Color.YELLOW); //the player's piece is red while the computer's piece is yellow
         }
         else {
+          if(topCenter.getState() == false) {
           topCenter.setBackground(Color.YELLOW);
-    //      topCenter.setState(true);
+          }
         }
           if(middleCenter.getState() == true) {
           lowRight.setBackground(Color.YELLOW);
-  //        lowRight.setState(true);
         }
           if(topCenter.getState() == true) {
             topRight.setBackground(Color.YELLOW);
-  //          topRight.setState(true);
           }
 
          if(lowRight.getState() == true) {
            lowCenter.setBackground(Color.YELLOW);
-//           lowCenter.setState(true);
          }
 
     }
@@ -117,53 +119,31 @@ Checkbox lowRight;
         topCenter.setBackground(Color.RED);
         if(middleCenter.getState() == true) {
         lowCenter.setBackground(Color.YELLOW);
-  //      lowCenter.setState(true);
       }
       if(middleCenter.getState() == false) {
         if(topRight.getState() == false) {
           middleCenter.setBackground(Color.YELLOW);
-  //        middleRight.setState(true);
         }
         if(topRight.getState() == true) {
           topLeft.setBackground(Color.YELLOW);
-  //        topLeft.setState(true);
         }
       }
-/*      else {
-        if(lowRight.getState() == false) {
-          lowRight.setBackground(Color.YELLOW);
-        }
-        if(lowRight.getState() == true){
-          middleRight.setBackground(Color.YELLOW);
-        }
-      }
-*/
      }
 
     if(e.getSource() == topRight) {
         topRight.setBackground(Color.RED);
-        if(topCenter.getState() == true) {
-          if(topLeft.getState() == false) {
-            middleLeft.setBackground(Color.YELLOW);
-  //          middleLeft.setState(true);
-          }
-          if(topCenter.getState() == false) {
+          if(topCenter.getState() == true) {
           topLeft.setBackground(Color.YELLOW);
-  //        topLeft.setState(true);
-        }
         }
         if(middleRight.getState() == true) {
           lowRight.setBackground(Color.YELLOW);
-  //        lowRight.setState(true);
         }
         else{
           if(lowLeft.getState() == true) {
             middleLeft.setBackground(Color.YELLOW);
-  //          middleLeft.setState(true);
           }
           if(lowLeft.getState() == false) {
             lowLeft.setBackground(Color.YELLOW);
-  //          lowLeft.setState(true);
           }
         }
       }
@@ -172,18 +152,15 @@ Checkbox lowRight;
       middleLeft.setBackground(Color.RED);
       if(topLeft.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
-  //      lowLeft.setState(true);
       }
         if(middleCenter.getState() == true) {
        middleRight.setBackground(Color.YELLOW);
-  //    middleRight.setState(true);
     }
     else {
       lowCenter.setBackground(Color.YELLOW);
    }
       if(lowLeft.getState() == true) {
         topLeft.setBackground(Color.YELLOW);
-  //      topCenter.setState(true);
      }
     }
 
@@ -191,31 +168,29 @@ Checkbox lowRight;
       middleCenter.setBackground(Color.RED);
       if(topCenter.getState() == true) {
       lowCenter.setBackground(Color.YELLOW);
-  //    lowCenter.setState(true);
      }
      if(topLeft.getState() == true) {
        lowRight.setBackground(Color.YELLOW);
      }
      if(lowCenter.getState() == true) {
        topCenter.setBackground(Color.YELLOW);
-  //     topCenter.setState(true);
      }
      if(middleRight.getState() == true) {
        middleLeft.setBackground(Color.YELLOW);
-  //     middleLeft.setState(true);
      }
      if(lowLeft.getState() == true) {
        topRight.setBackground(Color.YELLOW);
-  //     topRight.setState(true);
      }
      if(topRight.getState() == true) {
        lowLeft.setBackground(Color.YELLOW);
      }
+     else{
+       if(topLeft.getState() == false) {
+       topLeft.setBackground(Color.YELLOW);
+      }
+     }
      if(middleLeft.getState() == true) {
        middleRight.setBackground(Color.YELLOW);
-     }
-     else{
-       topLeft.setBackground(Color.YELLOW);
      }
     }
 
@@ -223,14 +198,12 @@ Checkbox lowRight;
       middleRight.setBackground(Color.RED);
       if(topRight.getState() == true) {
         lowRight.setBackground(Color.YELLOW);
-  //      lowRight.setState(true);
-      }
-      if(lowRight.getState() == true) {
-        topRight.setBackground(Color.YELLOW);
       }
       else {
       middleLeft.setBackground(Color.YELLOW);
-  //    middleLeft.setState(true);
+      }
+      if(lowRight.getState() == true) {
+        topRight.setBackground(Color.YELLOW);
       }
     }
 
@@ -239,21 +212,20 @@ Checkbox lowRight;
       if(middleCenter.getState() == true) {
         if(topRight.getState() == true) {
          lowRight.setBackground(Color.YELLOW);
-  //       lowRight.setState(true);
         }
         if(topRight.getState() == false) {
         topRight.setBackground(Color.YELLOW);
-  //      topRight.setState(true);
         }
       }
       if(middleCenter.getState() == false) {
         if(middleLeft.getState() == true) {
           topLeft.setBackground(Color.YELLOW);
-  //        topLeft.setState(true);
         }
         if(middleLeft.getState() == false) {
         middleCenter.setBackground(Color.YELLOW);
-  //      middleCenter.setState(true);
+        }
+        if(middleLeft.getState() == true) {
+          lowCenter.setBackground(Color.YELLOW);
         }
       }
     }
@@ -262,11 +234,9 @@ Checkbox lowRight;
       lowCenter.setBackground(Color.RED);
       if(lowRight.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
-  //      lowLeft.setState(true);
       }
       else{
         topCenter.setBackground(Color.YELLOW);
-  //      topCenter.setState(true);
       }
     }
 
@@ -274,45 +244,36 @@ Checkbox lowRight;
       lowRight.setBackground(Color.RED);
       if(lowCenter.getState() == true) {
         lowLeft.setBackground(Color.YELLOW);
-//        lowLeft.setState(true);
       }
       else {
         if(topLeft.getState() == false) {
          topLeft.setBackground(Color.YELLOW);
-//         topLeft.setState(true);
         }
         if(topLeft.getState() == true) {
           middleCenter.setBackground(Color.YELLOW);
-//          middleRight.setState(true);
         }
         if(middleRight.getState() == true) {
         topRight.setBackground(Color.YELLOW);
-//        middleCenter.setState(true);
        }
       }
     }
   }
 
-  boolean K = true;
-
-  public void Win() {
+  public void Win() { //the win method checks every possible way the user could win and prints in the terminal if the user has matched one
     if(topLeft.getState() == true) {
       if(topCenter.getState() == true) {
         if(topRight.getState() == true) {
           System.out.println("you win");
-          Lose(false);
         }
       }
       if(middleLeft.getState() == true) {
         if(lowLeft.getState() == true) {
           System.out.println("you win");
-          Lose(false);
         }
       }
       if(middleCenter.getState() == true) {
         if(lowRight.getState() == true) {
           System.out.println("you win");
-          Lose(false);
         }
       }
     }
@@ -320,7 +281,6 @@ Checkbox lowRight;
       if(middleCenter.getState() == true) {
         if(lowCenter.getState() == true) {
           System.out.println("you win");
-          Lose(false);
         }
       }
     }
@@ -328,13 +288,11 @@ Checkbox lowRight;
       if(middleCenter.getState() == true) {
         if(lowLeft.getState() == true) {
           System.out.println("you win");
-          Lose(false);
         }
       }
       if(middleRight.getState() == true) {
         if(lowRight.getState() == true) {
           System.out.println("you Win");
-          Lose(false);
         }
       }
     }
@@ -342,7 +300,6 @@ Checkbox lowRight;
       if(middleCenter.getState() == true) {
         if(middleRight.getState() == true) {
           System.out.println("you win");
-          Lose(false);
         }
       }
     }
@@ -350,13 +307,15 @@ Checkbox lowRight;
       if(lowCenter.getState() == true) {
         if(lowRight.getState() == true) {
           System.out.println("you win");
-          Lose(false);
         }
       }
     }
+    else {
+      System.out.println("draw");
+    }
   }
 
-  public void Lose(boolean K) {
+  public void Lose() { //lose method does the same as the win method- but for if the checkbox is not checked
     if(topLeft.getState() == false) {
       if(topCenter.getState() == false) {
         if(topRight.getState() == false) {
