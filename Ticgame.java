@@ -19,7 +19,6 @@ Checkbox lowCenter;
 Checkbox lowRight;
 
 boolean turn = true;
-boolean weird = false;
 
 Integer temp = 0;
 
@@ -84,102 +83,128 @@ Integer temp = 0;
   }
 
   public void actionPerformed(ActionEvent e) {
-    System.out.println("o_o");
+    System.out.println("o_o\no_o/'\no_o--'\no_o---'\no_o----'|~_~|\no_o--- '|~_~|\no_o--  '|~_~|");
   }
 
   public void itemStateChanged(ItemEvent e) {
 
     playGame();
 
-    if(turn == false) {
+  }
+
+  public void playComputer() {
+  //  if(turn == false) {
       if(temp == 1) {
         if(topCenter.getState() == true) {
-           notRight(true);
+           notRight();
         }
-        if(topCenter.getState() == false) {
+//        if(topCenter.getState() == false) {
+  //          weird = false;
           topCenter.setBackground(Color.YELLOW);
-          topCenter.setState(true);
-        }
+      //    topCenter.setState(true);
+          System.out.println(temp);
+          turn = true;
+//       }
       }
       if(temp == 2) {
-        if(topRight.getState() == true) {
-          notRight(true);
-        }
-        if(topRight.getState() == false) {
+//        if(topRight.getState() == true) {
+//          notRight(true);
+//      }
+//        if(topRight.getState() == false) {
+ //          weird = false;
           topRight.setBackground(Color.YELLOW);
-          topRight.setState(true);
-        }
+      //    topRight.setState(true);
+          System.out.println(temp);
+          turn = true;
+//        }
       }
       if(temp == 3) {
-        if(middleRight.getState() == true) {
-          notRight(true);
-        }
-        if(middleRight.getState() == false) {
+//        if(middleRight.getState() == true) {
+//          notRight(true);
+//        }
+//        if(middleRight.getState() == false) {
+  //        weird = false;
         middleRight.setBackground(Color.YELLOW);
-        middleRight.setState(true);
-        }
+  //      middleRight.setState(true);
+        System.out.println(temp);
+        turn = true;
+//        }
       }
       if(temp == 4) {
-        if(middleCenter.getState() == true) {
-          notRight(true);
-        }
-        if(middleCenter.getState() == false) {
+//        if(middleCenter.getState() == true) {
+//          notRight(true);
+//        }
+//        if(middleCenter.getState() == false) {
+  //        weird = false;
           middleCenter.setBackground(Color.YELLOW);
-          middleCenter.setState(true);
-        }
+      //    middleCenter.setState(true);
+          System.out.println(temp);
+          turn = true;
+//        }
       }
       if(temp == 5) {
-        if(middleRight.getState() == true) {
-          notRight(true);
-        }
-        if(middleRight.getState() == false) {
+//        if(middleRight.getState() == false) {
+  //          weird = false;
           middleRight.setBackground(Color.YELLOW);
-          middleRight.setState(true);
-      }
+      //    middleRight.setState(true);
+          System.out.println(temp);
+          turn = true;
+//        }
      }
      if(temp == 6) {
-       if(lowRight.getState() == true) {
-         notRight(true);
-       }
-       if(lowRight.getState() == false) {
+//       if(lowRight.getState() == true) {
+//         notRight(true);
+//       }
+//       if(lowRight.getState() == false) {
+  //         weird = false;
          lowRight.setBackground(Color.YELLOW);
-         lowRight.setState(true);
-       }
+    //     lowRight.setState(true);
+         System.out.println(temp);
+         turn = true;
+//       }
      }
      if(temp == 7) {
 //       if(lowCenter.getState() == true) {
 //         notRight(true);
 //       }
-       if(lowCenter.getState() == false) {
+//       if(lowCenter.getState() == false) {
+  //         weird = false;
          lowCenter.setBackground(Color.YELLOW);
-         lowCenter.setState(true);
-       }
+      //   lowCenter.setState(true);
+         System.out.println(temp);
+         turn = true;
+//       }
      }
      if(temp == 8) {
-       if(lowRight.getState() == true) {
-         notRight(true);
-       }
-       if(lowRight.getState() == false) {
+//       if(lowRight.getState() == true) {
+//         notRight(true);
+//       }
+//       if(lowRight.getState() == false) {
+  //         weird = false;
          lowRight.setBackground(Color.YELLOW);
-         lowRight.setState(true);
-       }
+      //   lowRight.setState(true);
+         System.out.println(temp);
+         turn = true;
+//       }
      }
      if(temp == 9) {
-       if(lowLeft.getState() == true) {
-         notRight(true);
-       }
-       if(lowLeft.getState() == false) {
+//       if(lowLeft.getState() == true) {
+//         notRight(true);
+//       }
+//       if(lowLeft.getState() == false) {
+  //         weird = false;
          lowLeft.setBackground(Color.YELLOW);
-         lowLeft.setState(true);
-       }
+      //   lowLeft.setState(true);
+         System.out.println(temp);
+         turn = true;
+//       }
      }
-     turn = true;
+    // turn = true;
     }
-
-  }
+//  }
 
   public void playGame() {
-    if(turn == true) {
+  //  if(turn == true) {
       if(topLeft.getState() == true) {
         temp = 1;
       }
@@ -208,15 +233,44 @@ Integer temp = 0;
         temp = 9;
       }
       turn = false;
-      notRight(false);
-    }
+//      notRight(false);
+//    }
+      playComputer();
   }
 
-  public void notRight(boolean weird) {
+  public void notRight() {
       Random r = new Random();
       temp = r.nextInt(9);
-      turn = false;
-      playGame();
+      if(temp == 0) {
+        System.out.println("0");
+      }
+      if(temp == 1) {
+        System.out.println("1");
+      }
+      if(temp == 2) {
+        System.out.println("2");
+      }
+      if(temp == 3) {
+        System.out.println("3");
+      }
+      if(temp == 4) {
+        System.out.println("4");
+      }
+      if(temp == 5) {
+        System.out.println("5");
+      }
+      if(temp == 6) {
+        System.out.println("6");
+      }
+      if(temp == 7) {
+        System.out.println("7");
+      }
+      if(temp == 8) {
+        System.out.println("8");
+      }
+      if(temp == 9) {
+        System.out.println("9");
+      }
   }
 
    public void paint(Graphics g) {
