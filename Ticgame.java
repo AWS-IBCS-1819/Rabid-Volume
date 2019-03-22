@@ -17,6 +17,7 @@ Checkbox middleRight;
 Checkbox lowLeft;
 Checkbox lowCenter;
 Checkbox lowRight;
+Checkbox yellow;
 
 boolean turn = true;
 
@@ -34,6 +35,12 @@ Integer temp = 0;
     topLeft.addItemListener(this);
     topLeft.setBounds(80, 80, 100, 100);
     add(topLeft);
+
+    yellow = new Checkbox();
+    //yellow.addItemListener(this);
+    yellow.setBounds(700, 700, 100, 100);
+    add(yellow);
+    yellow.setBackground(Color.YELLOW);
 
     topCenter = new Checkbox();
     topCenter.addItemListener(this);
@@ -235,42 +242,102 @@ Integer temp = 0;
       turn = false;
 //      notRight(false);
 //    }
-      playComputer();
+  //    playComputer();
+        notRight();
   }
 
   public void notRight() {
       Random r = new Random();
-      temp = r.nextInt(9);
-      if(temp == 0) {
-        System.out.println("0");
-      }
       if(temp == 1) {
-        System.out.println("1");
+        if(topCenter.getBackground() == yellow.getBackground()) {
+          temp = r.nextInt(9);
+        }
+        else {
+          topCenter.setBackground(Color.YELLOW);
+          System.out.println(temp);
+          turn = true;
+        }
       }
       if(temp == 2) {
-        System.out.println("2");
+        if(topRight.getBackground() == yellow.getBackground()) {
+          temp = r.nextInt(9);
+        }
+        else {
+          topRight.setBackground(Color.YELLOW);
+          System.out.println(temp);
+          turn = true;
+        }
       }
       if(temp == 3) {
-        System.out.println("3");
+        if(middleRight.getBackground() == yellow.getBackground()) {
+          temp = r.nextInt(9);
+        }
+        else {
+        middleRight.setBackground(Color.YELLOW);
+        System.out.println(temp);
+        turn = true;
+       }
       }
       if(temp == 4) {
-        System.out.println("4");
+        if(middleCenter.getBackground() == yellow.getBackground()) {
+          temp = r.nextInt(9);
+        }
+        else {
+          middleCenter.setBackground(Color.YELLOW);
+          System.out.println(temp);
+          turn = true;
+        }
       }
       if(temp == 5) {
-        System.out.println("5");
-      }
-      if(temp == 6) {
-        System.out.println("6");
-      }
-      if(temp == 7) {
-        System.out.println("7");
-      }
-      if(temp == 8) {
-        System.out.println("8");
-      }
-      if(temp == 9) {
-        System.out.println("9");
-      }
+        if(middleRight.getBackground() == yellow.getBackground()) {
+          temp = r.nextInt(9);
+        }
+        else {
+          middleRight.setBackground(Color.YELLOW);
+          System.out.println(temp);
+          turn = true;
+        }
+     }
+     if(temp == 6) {
+       if(lowRight.getBackground() == yellow.getBackground()) {
+         temp = r.nextInt(9);
+       }
+       else {
+         lowRight.setBackground(Color.YELLOW);
+         System.out.println(temp);
+         turn = true;
+       }
+     }
+     if(temp == 7) {
+       if(lowCenter.getBackground() == yellow.getBackground()) {
+         temp = r.nextInt(9);
+       }
+       else {
+         lowCenter.setBackground(Color.YELLOW);
+         System.out.println(temp);
+         turn = true;
+       }
+     }
+     if(temp == 8) {
+       if(lowRight.getBackground() == yellow.getBackground()) {
+         temp = r.nextInt(9);
+       }
+        else {
+         lowRight.setBackground(Color.YELLOW);
+         System.out.println(temp);
+         turn = true;
+       }
+     }
+     if(temp == 9) {
+       if(lowLeft.getBackground() == yellow.getBackground()) {
+         temp = r.nextInt(9);
+       }
+       else {
+         lowLeft.setBackground(Color.YELLOW);
+         System.out.println(temp);
+         turn = true;
+       }
+     }
   }
 
    public void paint(Graphics g) {
