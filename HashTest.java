@@ -13,19 +13,33 @@ public class HashTest {
 
     System.out.println("This is the start code: " + code);
 
-    int z = code.get(0);
+    int firstNumber = code.get(0);
 
-    if(z <= 5) {
+    if(firstNumber <= 5) {
       int y = 0;
       y = code.get(1) + code.get(2);
       code.set(0, y);
     }
-    if(z > 5) {
+    if(firstNumber > 5) {
       int u = 0;
       u = code.get(1) * code.get(2);
       code.set(0, u);
     }
 
-    System.out.println("This is the new code: " + code);
+    int secondNumber = code.get(1);
+
+    if(secondNumber <= 5) {
+      int k = 0;
+      k = code.get(2) - code.get(1);
+      code.set(1, k);
+    }
+
+    if(secondNumber > 5) {
+      int j = 0;
+      j = code.get(0) - code.get(1);
+      code.set(1, j);
+    }
+
+    System.out.println("This is the new code: " + code;
   }
 }
