@@ -7,9 +7,11 @@ public class HashTest {
 
     ArrayList<Integer> code = new ArrayList<Integer>();
 
-    code.add(6);
-    code.add(8);
-    code.add(3);
+    code.add(1);
+    code.add(0);
+    code.add(0);
+    code.add(0);
+    code.add(0);
 
     System.out.println("This is the start code: " + code);
 
@@ -40,20 +42,55 @@ public class HashTest {
       code.set(1, j);
     }
 
+    int thirdNumber = code.get(2);
+
+    if(thirdNumber <= 5) {
+      int k = 0;
+      k = code.get(2) + 2;
+      code.set(2, k);
+    }
+
+    if(thirdNumber > 5) {
+      int j = 0;
+      j = code.get(3) - code.get(1);
+      code.set(2, j);
+    }
+
     int fourthNumber = code.get(3);
 
     if(fourthNumber <= 5) {
       int k = 0;
       k = code.get(0) - code.get(1);
-      code.set(1, k);
+      code.set(3, k);
     }
 
     if(fourthNumber > 5) {
       int j = 0;
       j = code.get(2) - code.get(1);
-      code.set(1, j);
+      code.set(3, j);
     }
 
-    System.out.println("This is the new code: " + code);
+    int fifthNumber = code.get(4);
+
+    if(fourthNumber <= 5) {
+      int k = 0;
+      k = code.get(4) - code.get(0);
+      code.set(4, k);
+    }
+
+    if(fourthNumber > 5) {
+      int j = 0;
+      j = code.get(2) - code.get(4);
+      code.set(4, j);
+    }
+
+    StringBuilder sb = new StringBuilder();
+      for (int i = code.size() - 1; i >= 0; i--) {
+        int num = code.get(i);
+        sb.append(num);
+      }
+      String result = sb.toString();
+
+    System.out.println("This is the new code: " + result);
   }
 }
