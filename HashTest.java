@@ -40,6 +40,20 @@ public class HashTest {
       code.set(1, j);
     }
 
-    System.out.println("This is the new code: " + code;
+    int fourthNumber = code.get(3);
+
+    if(fourthNumber <= 5) {
+      int k = 0;
+      k = code.get(0) - code.get(1);
+      code.set(1, k);
+    }
+
+    if(fourthNumber > 5) {
+      int j = 0;
+      j = code.get(2) - code.get(1);
+      code.set(1, j);
+    }
+
+    System.out.println("This is the new code: " + code);
   }
 }
