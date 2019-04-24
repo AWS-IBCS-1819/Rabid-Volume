@@ -1,5 +1,3 @@
-//Compressing.java by Mr. Considine
-
 import java.io.*;
 import java.util.*;
 
@@ -28,22 +26,52 @@ public static void main(String[] args) {
       }
     }
 
-    System.out.println("your file:\n" + sb);
   }
   catch (FileNotFoundException e) {
     e.printStackTrace();
   }
 
-  HashMap<String, Integer> comps = new HashMap<String, Integer>();
-  comps.put("tition", 1);
+  int x = 3;
 
-  for(int i = 0; i < sb.length(); i++) {
-    
+  HashMap<Integer, String> comps = new HashMap<Integer, String>();
+  ArrayList<Integer> keys = new ArrayList<Integer>();
+  String temp = "";
+  int count = 0;
+  String next = "";
+  for (int i = 0; i < sb.length() - x; i++) {
+    count = 0;
+    next = sb.substring(i, i+x);
+    for (int k = i; k < sb.length() - x; k++) {
+      temp = sb.substring(k, k+x);
+      if (temp.equals(next)) {
+        count++;
+      }
+    }
+    if (count > 2) {
+      comps.put(i, next);
+      keys.add(i);
+    }
   }
 
+  String example = sb.toString();
+  String reverse = example;
+
+  for (int i = 0; i < keys.size(); i++) {
+    example = example.replaceAll(sb.substring(i, i+x), keys.get(i).toString());
+  }
+
+  for(int l = 0; l < comps.size(); l++) {
+    if(l == keys.get(x)) {
+    reverse = reverse.replaceAll(example.substring(l, l+1), comps.get(l));
+  }
+ }
+
+  System.out.println("Original:\n" + sb.toString());
+  System.out.println("Compressed:\n" + example);
+  System.out.println("Reversed:\n" + reverse);
   try {
     BufferedWriter writer = new BufferedWriter(new FileWriter("testOutput.txt"));
-    writer.write(sb.toString());
+    writer.write(example);
     writer.close();
   }
   catch (IOException e) {
